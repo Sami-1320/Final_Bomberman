@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "FinalBomberMan",
+			"Path": "..\\Source\\FinalBomberMan.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "FinalBomberManEditor",
+			"Path": "..\\Source\\FinalBomberManEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

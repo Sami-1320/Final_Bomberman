@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\FinalBomberMan.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{F31BBDD1-B3E8-3BCC-9652-680E16935819}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\FinalBomberMan.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\FinalBomberManEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\.vsconfig" />
+    <Filter Include="Config">
+      <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\FinalBomberMan">
+      <UniqueIdentifier>{5F07F1C9-F8A9-393A-863C-C906834DE842}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\FinalBomberMan\BloqueAcero.cpp">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\BloqueAcero.h">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\BloqueLadrillo.cpp">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\BloqueLadrillo.h">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\BloqueMadera.cpp">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\BloqueMadera.h">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\ConstructorMapa.cpp">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\ConstructorMapa.h">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\DirectorNiveles.cpp">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\DirectorNiveles.h">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <None Include="..\..\Source\FinalBomberMan\FinalBomberMan.Build.cs">
+      <Filter>Source\FinalBomberMan</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\FinalBomberMan\FinalBomberMan.cpp">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\FinalBomberMan.h">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\FinalBomberManCharacter.cpp">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\FinalBomberManCharacter.h">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\FinalBomberManGameMode.cpp">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\FinalBomberManGameMode.h">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\IBloqueInterfaz.cpp">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\IBloqueInterfaz.h">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\ITileInterfaz.cpp">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\ITileInterfaz.h">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\Tile.cpp">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\Tile.h">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\TipoTile.cpp">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\TipoTile.h">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
