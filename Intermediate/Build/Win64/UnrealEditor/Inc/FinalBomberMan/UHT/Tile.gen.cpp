@@ -17,6 +17,7 @@ ENGINE_API UClass* Z_Construct_UClass_UMaterial_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
 FINALBOMBERMAN_API UClass* Z_Construct_UClass_ATile();
 FINALBOMBERMAN_API UClass* Z_Construct_UClass_ATile_NoRegister();
+FINALBOMBERMAN_API UClass* Z_Construct_UClass_UIElementoMapa_NoRegister();
 FINALBOMBERMAN_API UClass* Z_Construct_UClass_UITileInterfaz_NoRegister();
 FINALBOMBERMAN_API UEnum* Z_Construct_UEnum_FinalBomberMan_ETipoTile();
 UPackage* Z_Construct_UPackage__Script_FinalBomberMan();
@@ -279,6 +280,7 @@ UObject* (*const Z_Construct_UClass_ATile_Statics::DependentSingletons[])() = {
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_ATile_Statics::DependentSingletons) < 16);
 const UECodeGen_Private::FImplementedInterfaceParams Z_Construct_UClass_ATile_Statics::InterfaceParams[] = {
 	{ Z_Construct_UClass_UITileInterfaz_NoRegister, (int32)VTABLE_OFFSET(ATile, IITileInterfaz), false },  // 2150738637
+	{ Z_Construct_UClass_UIElementoMapa_NoRegister, (int32)VTABLE_OFFSET(ATile, IIElementoMapa), false },  // 1511220777
 };
 const UECodeGen_Private::FClassParams Z_Construct_UClass_ATile_Statics::ClassParams = {
 	&ATile::StaticClass,
@@ -315,10 +317,10 @@ ATile::~ATile() {}
 struct Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_Tile_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ATile, ATile::StaticClass, TEXT("ATile"), &Z_Registration_Info_UClass_ATile, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ATile), 1378132219U) },
+		{ Z_Construct_UClass_ATile, ATile::StaticClass, TEXT("ATile"), &Z_Registration_Info_UClass_ATile, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ATile), 2666599228U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_Tile_h_3926014416(TEXT("/Script/FinalBomberMan"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_Tile_h_1490809645(TEXT("/Script/FinalBomberMan"),
 	Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_Tile_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_Tile_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

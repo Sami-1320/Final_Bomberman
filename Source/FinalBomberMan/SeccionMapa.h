@@ -51,6 +51,10 @@ public:
     UFUNCTION(BlueprintCallable, Category = "Sección Mapa")
     void AplicarExplosionEnCadena(FVector2D PosicionInicial, int32 RadioExplosion);
 
+    // Método para agregar tiles desde el constructor
+    UFUNCTION(BlueprintCallable, Category = "Sección Mapa")
+    void AgregarTilesDesdeConstructor(class UConstructorMapa* Constructor);
+
 protected:
     virtual void BeginPlay() override;
 

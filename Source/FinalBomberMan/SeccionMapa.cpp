@@ -2,6 +2,7 @@
 #include "SeccionMapa.h"
 #include "IElementoMapa.h"
 #include "Tile.h"
+#include "ConstructorMapa.h"
 
 ASeccionMapa::ASeccionMapa()
 {
@@ -26,6 +27,8 @@ void ASeccionMapa::Renderizar()
             Elemento->Renderizar();
         }
     }
+    
+    UE_LOG(LogTemp, Log, TEXT("SeccionMapa: Renderizando %d elementos"), ElementosHijos.Num());
 }
 
 void ASeccionMapa::Actualizar(float DeltaTime)
@@ -63,6 +66,8 @@ void ASeccionMapa::RecibirDano(int32 Dano)
             Elemento->RecibirDano(Dano);
         }
     }
+    
+    UE_LOG(LogTemp, Log, TEXT("SeccionMapa: Daño aplicado a elementos destructibles"));
 }
 
 FVector2D ASeccionMapa::ObtenerPosicion() const
@@ -145,6 +150,45 @@ TArray<TScriptInterface<IIElementoMapa>> ASeccionMapa::ObtenerElementosEnPosicio
     }
     
     return ElementosEnPosicion;
+}
+
+void ASeccionMapa::AgregarTilesDesdeConstructor(UConstructorMapa* Constructor)
+{
+    if (!Constructor)
+    {
+        UE_LOG(LogTemp, Error, TEXT("SeccionMapa: Constructor es NULL"));
+        return;
+    }
+
+    // Limpiar elementos existentes
+    LimpiarElementos();
+
+    // Obtener dimensiones del constructor
+    int32 Ancho = Constructor->ObtenerAncho();
+    int32 Alto = Constructor->ObtenerAlto();
+
+    // Agregar todos los tiles del constructor como elementos
+    for (int32 Y = 0; Y < Alto; Y++)
+    {
+        for (int32 X = 0; X < Ancho; X++)
+        {
+            ATile* Tile = Constructor->ObtenerTileEn(X, Y);
+            if (Tile)
+            {
+                // Crear una interfaz para el tile
+                TScriptInterface<IIElementoMapa> ElementoTile;
+                ElementoTile.SetInterface(Cast<IIElementoMapa>(Tile));
+                ElementoTile.SetObject(Tile);
+
+                if (ElementoTile.GetInterface())
+                {
+                    AgregarElemento(ElementoTile);
+                }
+            }
+        }
+    }
+
+    UE_LOG(LogTemp, Warning, TEXT("SeccionMapa: Agregados %d tiles desde constructor"), ElementosHijos.Num());
 }
 
 void ASeccionMapa::AplicarExplosionEnCadena(FVector2D PosicionInicial, int32 RadioExplosion)

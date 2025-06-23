@@ -14,6 +14,7 @@ COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector2D();
 ENGINE_API UClass* Z_Construct_UClass_AActor();
 FINALBOMBERMAN_API UClass* Z_Construct_UClass_ASeccionMapa();
 FINALBOMBERMAN_API UClass* Z_Construct_UClass_ASeccionMapa_NoRegister();
+FINALBOMBERMAN_API UClass* Z_Construct_UClass_UConstructorMapa_NoRegister();
 FINALBOMBERMAN_API UClass* Z_Construct_UClass_UIElementoMapa_NoRegister();
 UPackage* Z_Construct_UPackage__Script_FinalBomberMan();
 // End Cross Module References
@@ -66,6 +67,55 @@ DEFINE_FUNCTION(ASeccionMapa::execAgregarElemento)
 	P_NATIVE_END;
 }
 // End Class ASeccionMapa Function AgregarElemento
+
+// Begin Class ASeccionMapa Function AgregarTilesDesdeConstructor
+struct Z_Construct_UFunction_ASeccionMapa_AgregarTilesDesdeConstructor_Statics
+{
+	struct SeccionMapa_eventAgregarTilesDesdeConstructor_Parms
+	{
+		UConstructorMapa* Constructor;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Secci\xc3\xb3n Mapa" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// M\xc3\xa9todo para agregar tiles desde el constructor\n" },
+#endif
+		{ "ModuleRelativePath", "SeccionMapa.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "M\xc3\xa9todo para agregar tiles desde el constructor" },
+#endif
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_Constructor;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ASeccionMapa_AgregarTilesDesdeConstructor_Statics::NewProp_Constructor = { "Constructor", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SeccionMapa_eventAgregarTilesDesdeConstructor_Parms, Constructor), Z_Construct_UClass_UConstructorMapa_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ASeccionMapa_AgregarTilesDesdeConstructor_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASeccionMapa_AgregarTilesDesdeConstructor_Statics::NewProp_Constructor,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_ASeccionMapa_AgregarTilesDesdeConstructor_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASeccionMapa_AgregarTilesDesdeConstructor_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ASeccionMapa, nullptr, "AgregarTilesDesdeConstructor", nullptr, nullptr, Z_Construct_UFunction_ASeccionMapa_AgregarTilesDesdeConstructor_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ASeccionMapa_AgregarTilesDesdeConstructor_Statics::PropPointers), sizeof(Z_Construct_UFunction_ASeccionMapa_AgregarTilesDesdeConstructor_Statics::SeccionMapa_eventAgregarTilesDesdeConstructor_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASeccionMapa_AgregarTilesDesdeConstructor_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASeccionMapa_AgregarTilesDesdeConstructor_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_ASeccionMapa_AgregarTilesDesdeConstructor_Statics::SeccionMapa_eventAgregarTilesDesdeConstructor_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_ASeccionMapa_AgregarTilesDesdeConstructor()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASeccionMapa_AgregarTilesDesdeConstructor_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASeccionMapa::execAgregarTilesDesdeConstructor)
+{
+	P_GET_OBJECT(UConstructorMapa,Z_Param_Constructor);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->AgregarTilesDesdeConstructor(Z_Param_Constructor);
+	P_NATIVE_END;
+}
+// End Class ASeccionMapa Function AgregarTilesDesdeConstructor
 
 // Begin Class ASeccionMapa Function AplicarExplosionEnCadena
 struct Z_Construct_UFunction_ASeccionMapa_AplicarExplosionEnCadena_Statics
@@ -437,6 +487,7 @@ void ASeccionMapa::StaticRegisterNativesASeccionMapa()
 	UClass* Class = ASeccionMapa::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
 		{ "AgregarElemento", &ASeccionMapa::execAgregarElemento },
+		{ "AgregarTilesDesdeConstructor", &ASeccionMapa::execAgregarTilesDesdeConstructor },
 		{ "AplicarExplosionEnCadena", &ASeccionMapa::execAplicarExplosionEnCadena },
 		{ "ConfigurarSeccion", &ASeccionMapa::execConfigurarSeccion },
 		{ "ContienePosicion", &ASeccionMapa::execContienePosicion },
@@ -470,6 +521,7 @@ struct Z_Construct_UClass_ASeccionMapa_Statics
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_ASeccionMapa_AgregarElemento, "AgregarElemento" }, // 3387835393
+		{ &Z_Construct_UFunction_ASeccionMapa_AgregarTilesDesdeConstructor, "AgregarTilesDesdeConstructor" }, // 2477189487
 		{ &Z_Construct_UFunction_ASeccionMapa_AplicarExplosionEnCadena, "AplicarExplosionEnCadena" }, // 2370480168
 		{ &Z_Construct_UFunction_ASeccionMapa_ConfigurarSeccion, "ConfigurarSeccion" }, // 187001935
 		{ &Z_Construct_UFunction_ASeccionMapa_ContienePosicion, "ContienePosicion" }, // 612679426
@@ -536,10 +588,10 @@ ASeccionMapa::~ASeccionMapa() {}
 struct Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_SeccionMapa_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ASeccionMapa, ASeccionMapa::StaticClass, TEXT("ASeccionMapa"), &Z_Registration_Info_UClass_ASeccionMapa, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ASeccionMapa), 155164261U) },
+		{ Z_Construct_UClass_ASeccionMapa, ASeccionMapa::StaticClass, TEXT("ASeccionMapa"), &Z_Registration_Info_UClass_ASeccionMapa, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ASeccionMapa), 3318200508U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_SeccionMapa_h_2052034819(TEXT("/Script/FinalBomberMan"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_SeccionMapa_h_469937729(TEXT("/Script/FinalBomberMan"),
 	Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_SeccionMapa_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_SeccionMapa_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

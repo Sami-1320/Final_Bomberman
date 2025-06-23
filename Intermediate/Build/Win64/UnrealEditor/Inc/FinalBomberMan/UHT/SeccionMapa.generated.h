@@ -10,12 +10,14 @@
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 class IIElementoMapa;
+class UConstructorMapa;
 #ifdef FINALBOMBERMAN_SeccionMapa_generated_h
 #error "SeccionMapa.generated.h already included, missing '#pragma once' in SeccionMapa.h"
 #endif
 #define FINALBOMBERMAN_SeccionMapa_generated_h
 
 #define FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_SeccionMapa_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execAgregarTilesDesdeConstructor); \
 	DECLARE_FUNCTION(execAplicarExplosionEnCadena); \
 	DECLARE_FUNCTION(execObtenerElementosEnPosicion); \
 	DECLARE_FUNCTION(execContienePosicion); \

@@ -4,6 +4,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "ITileInterfaz.h"
+#include "IElementoMapa.h"
 #include "TipoTile.h"  // AGREGAR INCLUDE
 #include "Tile.generated.h"
 
@@ -13,7 +14,7 @@ class UMaterial;
 // QUITAR LA DEFINICIÓN DE ETipoTile - YA NO ESTÁ AQUÍ
 
 UCLASS()
-class FINALBOMBERMAN_API ATile : public AActor, public IITileInterfaz
+class FINALBOMBERMAN_API ATile : public AActor, public IITileInterfaz, public IIElementoMapa
 {
     GENERATED_BODY()
 
@@ -50,6 +51,14 @@ public:
     virtual void ColocarBloque(AActor* Bloque) override;
     virtual void RemoverBloque() override;
     virtual bool TieneBloque() const override;
+
+    // Implementación de IIElementoMapa (Patrón Composite)
+    virtual void Renderizar() override;
+    virtual void Actualizar(float DeltaTime) override;
+    virtual bool EsDestructible() const override;
+    virtual void RecibirDano(int32 Dano) override;
+    virtual FVector2D ObtenerPosicion() const override;
+    virtual void EstablecerPosicion(FVector2D NuevaPosicion) override;
 
     // Funciones adicionales
     UFUNCTION(BlueprintCallable, Category = "Tile")

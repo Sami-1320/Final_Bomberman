@@ -4,8 +4,13 @@
 #include "UObject/ConstructorHelpers.h"
 #include "Materials/Material.h"
 #include "Engine/Engine.h"
+#include "IElementoMapa.h"
+#include "BloqueMadera.h"
+#include "BloqueLadrillo.h"
+#include "Kismet/GameplayStatics.h"
+#include "Engine/World.h"
 
-// En el constructor de ATile, cambiar la escala y posici�n
+// En el constructor de ATile, cambiar la escala y posicin
 ATile::ATile()
 {
     PrimaryActorTick.bCanEverTick = false;
@@ -45,8 +50,8 @@ ATile::ATile()
     PosicionGrid = FVector2D::ZeroVector;
     BloqueColocado = nullptr;
 
-    // NUEVA ESCALA - hacer los tiles m�s delgados y del tama�o correcto
-    SetActorScale3D(FVector(2.0f, 2.0f, 0.2f)); // M�s delgados (0.2 en Z)
+    // NUEVA ESCALA - hacer los tiles ms delgados y del tamao correcto
+    SetActorScale3D(FVector(2.0f, 2.0f, 0.2f)); // Ms delgados (0.2 en Z)
 }
 
 void ATile::BeginPlay()
@@ -71,7 +76,7 @@ void ATile::ColocarBloque(AActor* Bloque)
     BloqueColocado = Bloque;
     if (BloqueColocado)
     {
-        // CALCULAR POSICI�N AL RAS
+        // CALCULAR POSICIN AL RAS
         FVector PosicionTile = GetActorLocation();
 
         // Tile con escala 0.2 en Z = altura de 20 unidades
@@ -98,6 +103,83 @@ void ATile::RemoverBloque()
 bool ATile::TieneBloque() const
 {
     return BloqueColocado != nullptr && IsValid(BloqueColocado);
+}
+
+// Implementación de IIElementoMapa (Patrón Composite)
+void ATile::Renderizar()
+{
+    // El tile se renderiza automáticamente por Unreal Engine
+    // Aquí podríamos agregar lógica adicional de renderizado si fuera necesario
+    UE_LOG(LogTemp, Verbose, TEXT("Tile renderizado en posición (%f, %f)"), PosicionGrid.X, PosicionGrid.Y);
+}
+
+void ATile::Actualizar(float DeltaTime)
+{
+    // Los tiles son estáticos, pero podrían tener animaciones o efectos
+    // Por ejemplo, tiles que cambian de color o tienen efectos especiales
+    if (TipoTile == ETipoTile::SpawnJugador || TipoTile == ETipoTile::SpawnEnemigo)
+    {
+        // Efecto de parpadeo para tiles de spawn
+        static float TiempoAcumulado = 0.0f;
+        TiempoAcumulado += DeltaTime;
+        
+        if (MeshComponent)
+        {
+            float Intensidad = 0.5f + 0.5f * FMath::Sin(TiempoAcumulado * 2.0f);
+            MeshComponent->SetVisibility(Intensidad > 0.3f);
+        }
+    }
+}
+
+bool ATile::EsDestructible() const
+{
+    // Un tile es destructible si tiene un bloque destructible
+    if (BloqueColocado)
+    {
+        // Verificar si el bloque implementa la interfaz de bloque destructible
+        if (Cast<ABloqueMadera>(BloqueColocado) || Cast<ABloqueLadrillo>(BloqueColocado))
+        {
+            return true;
+        }
+    }
+    
+    // También es destructible si es del tipo BloqueDestructible
+    return TipoTile == ETipoTile::BloqueDestructible;
+}
+
+void ATile::RecibirDano(int32 Dano)
+{
+    if (EsDestructible())
+    {
+        // Aplicar daño al bloque si existe
+        if (BloqueColocado)
+        {
+            // Usar el sistema de daño de Unreal Engine
+            UGameplayStatics::ApplyDamage(BloqueColocado, Dano, nullptr, this, nullptr);
+        }
+        
+        // Si no hay bloque pero el tile es destructible, destruir el tile
+        if (TipoTile == ETipoTile::BloqueDestructible && !BloqueColocado)
+        {
+            UE_LOG(LogTemp, Log, TEXT("Tile destructible destruido en (%f, %f)"), PosicionGrid.X, PosicionGrid.Y);
+            // Aquí podríamos cambiar el tipo de tile a Vacio
+            TipoTile = ETipoTile::Vacio;
+            ConfigurarAparienciaTile();
+        }
+    }
+}
+
+FVector2D ATile::ObtenerPosicion() const
+{
+    return PosicionGrid;
+}
+
+void ATile::EstablecerPosicion(FVector2D NuevaPosicion)
+{
+    PosicionGrid = NuevaPosicion;
+    // Actualizar la posición en el mundo 3D
+    FVector PosicionMundo = FVector(NuevaPosicion.X * 200.0f, NuevaPosicion.Y * 200.0f, 0.0f);
+    SetActorLocation(PosicionMundo);
 }
 
 void ATile::ConfigurarAparienciaTile()
