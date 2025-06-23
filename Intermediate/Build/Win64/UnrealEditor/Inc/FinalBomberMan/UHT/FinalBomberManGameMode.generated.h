@@ -10,12 +10,16 @@
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 class ATile;
+class UGameplayFacade;
 #ifdef FINALBOMBERMAN_FinalBomberManGameMode_generated_h
 #error "FinalBomberManGameMode.generated.h already included, missing '#pragma once' in FinalBomberManGameMode.h"
 #endif
 #define FINALBOMBERMAN_FinalBomberManGameMode_generated_h
 
-#define FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_FinalBomberManGameMode_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_FinalBomberManGameMode_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execObtenerGameplayFacade); \
+	DECLARE_FUNCTION(execActualizarContadorPuntosGlobal); \
+	DECLARE_FUNCTION(execSpawnEnemigosAleatorios); \
 	DECLARE_FUNCTION(execObtenerAltoMapa); \
 	DECLARE_FUNCTION(execObtenerAnchoMapa); \
 	DECLARE_FUNCTION(execObtenerTileEn); \
@@ -25,7 +29,7 @@ class ATile;
 	DECLARE_FUNCTION(execCargarNivel);
 
 
-#define FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_FinalBomberManGameMode_h_16_INCLASS_NO_PURE_DECLS \
+#define FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_FinalBomberManGameMode_h_18_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAFinalBomberManGameMode(); \
 	friend struct Z_Construct_UClass_AFinalBomberManGameMode_Statics; \
@@ -34,7 +38,7 @@ public: \
 	DECLARE_SERIALIZER(AFinalBomberManGameMode)
 
 
-#define FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_FinalBomberManGameMode_h_16_ENHANCED_CONSTRUCTORS \
+#define FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_FinalBomberManGameMode_h_18_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AFinalBomberManGameMode(AFinalBomberManGameMode&&); \
@@ -46,13 +50,13 @@ public: \
 	FINALBOMBERMAN_API virtual ~AFinalBomberManGameMode();
 
 
-#define FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_FinalBomberManGameMode_h_13_PROLOG
-#define FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_FinalBomberManGameMode_h_16_GENERATED_BODY \
+#define FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_FinalBomberManGameMode_h_15_PROLOG
+#define FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_FinalBomberManGameMode_h_18_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_FinalBomberManGameMode_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_FinalBomberManGameMode_h_16_INCLASS_NO_PURE_DECLS \
-	FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_FinalBomberManGameMode_h_16_ENHANCED_CONSTRUCTORS \
+	FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_FinalBomberManGameMode_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_FinalBomberManGameMode_h_18_INCLASS_NO_PURE_DECLS \
+	FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_FinalBomberManGameMode_h_18_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -60,7 +64,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> FINALBOMBERMAN_API UClass* StaticClass<class AFinalBomberManGameMode>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_FinalBomberManGameMode_h
+#define CURRENT_FILE_ID FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_FinalBomberManGameMode_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

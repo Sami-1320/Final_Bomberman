@@ -205,29 +205,37 @@ void UPatronesIntegracion::EjemploBusquedaTiles(UWorld* Mundo)
 
 void UPatronesIntegracion::ConfigurarSistemas(UWorld* Mundo)
 {
+    UE_LOG(LogTemp, Warning, TEXT("PatronesIntegracion ConfigurarSistemas: INICIANDO"));
+    
     if (!Mundo)
     {
+        UE_LOG(LogTemp, Error, TEXT("PatronesIntegracion ConfigurarSistemas: ERROR - Mundo es NULL"));
         return;
     }
 
     // Configurar Facade
     GameplayFacade = NewObject<UGameplayFacade>();
+    UE_LOG(LogTemp, Warning, TEXT("PatronesIntegracion ConfigurarSistemas: GameplayFacade creado: %s"), GameplayFacade ? TEXT("VÁLIDO") : TEXT("NULL"));
+    
     GameplayFacade->InicializarJuego(Mundo);
+    UE_LOG(LogTemp, Warning, TEXT("PatronesIntegracion ConfigurarSistemas: Juego inicializado"));
 
     // Configurar Constructor
     UDirectorNiveles* Director = NewObject<UDirectorNiveles>();
     ConstructorMapa = Director->CrearNivel1(Mundo);
+    UE_LOG(LogTemp, Warning, TEXT("PatronesIntegracion ConfigurarSistemas: ConstructorMapa creado: %s"), ConstructorMapa ? TEXT("VÁLIDO") : TEXT("NULL"));
 
     // Configurar Iterator
     if (ConstructorMapa)
     {
         TileIterator = UMapTileIterator::CrearIterator(ConstructorMapa);
+        UE_LOG(LogTemp, Warning, TEXT("PatronesIntegracion ConfigurarSistemas: TileIterator creado: %s"), TileIterator ? TEXT("VÁLIDO") : TEXT("NULL"));
     }
 
     // Configurar Composite
     CrearSeccionMapa(Mundo);
 
-    UE_LOG(LogTemp, Log, TEXT("Sistemas configurados correctamente"));
+    UE_LOG(LogTemp, Warning, TEXT("PatronesIntegracion ConfigurarSistemas: Sistemas configurados completado"));
 }
 
 void UPatronesIntegracion::CrearSeccionMapa(UWorld* Mundo)

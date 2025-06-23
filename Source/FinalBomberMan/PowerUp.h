@@ -14,7 +14,9 @@ enum class ETipoPowerUp : uint8
     Velocidad       UMETA(DisplayName = "Velocidad"),
     Escudo          UMETA(DisplayName = "Escudo"),
     BombaRemota     UMETA(DisplayName = "Bomba Remota"),
-    Inmortalidad    UMETA(DisplayName = "Inmortalidad")
+    Inmortalidad    UMETA(DisplayName = "Inmortalidad"),
+    SaltoAlto       UMETA(DisplayName = "Salto Alto"),
+    VidaExtra       UMETA(DisplayName = "Vida Extra")
 };
 
 UCLASS()
@@ -77,7 +79,36 @@ protected:
     virtual void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
 private:
+    // Material references loaded in constructor
+    UPROPERTY()
+    UMaterialInterface* MaterialBombaExtra;
+    
+    UPROPERTY()
+    UMaterialInterface* MaterialRadioExplosion;
+    
+    UPROPERTY()
+    UMaterialInterface* MaterialVelocidad;
+    
+    UPROPERTY()
+    UMaterialInterface* MaterialEscudo;
+    
+    UPROPERTY()
+    UMaterialInterface* MaterialBombaRemota;
+    
+    UPROPERTY()
+    UMaterialInterface* MaterialInmortalidad;
+    
+    UPROPERTY()
+    UMaterialInterface* MaterialSaltoAlto;
+    
+    UPROPERTY()
+    UMaterialInterface* MaterialVidaExtra;
+    
+    UPROPERTY()
+    UMaterialInterface* MaterialDorado;
+
     void ConfigurarMesh();
+    void ConfigurarMeshBasico();
     void ConfigurarCollision();
     void AplicarEfectoEspecifico(class AFinalBomberManCharacter* Jugador);
     void RemoverEfectoEspecifico(class AFinalBomberManCharacter* Jugador);

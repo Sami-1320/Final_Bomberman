@@ -92,6 +92,9 @@ public:
     UFUNCTION(BlueprintCallable, Category = "Enemigo")
     float ObtenerDistanciaAlJugador() const;
 
+    // Función para recibir daño del sistema de Unreal Engine
+    virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
+
 protected:
     virtual void BeginPlay() override;
     virtual void Tick(float DeltaTime) override;

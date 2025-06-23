@@ -64,14 +64,21 @@ UConstructorMapa* UConstructorMapa::ColocarBordesIndestructibles()
 
 UConstructorMapa* UConstructorMapa::ColocarPatronColumnas()
 {
+    int32 BloquesColocados = 0;
+    
 	// Patrón de columnas internas (cada 2 casillas)
     for (int32 Y = 2; Y < DatosMapaActual.Alto - 2; Y += 2)
     {
         for (int32 X = 2; X < DatosMapaActual.Ancho - 2; X += 2)
         {
+            // Colocar bloques de acero normalmente en el patrón de columnas
+            // (incluyendo la zona segura, ya que son permanentes)
             EstablecerTipoTile(X, Y, ETipoTile::BloqueIndestructible);
+            BloquesColocados++;
         }
     }
+
+    UE_LOG(LogTemp, Warning, TEXT("ConstructorMapa: Patrón de columnas - Bloques de acero colocados: %d"), BloquesColocados);
 
     return this;
 }
@@ -82,19 +89,36 @@ UConstructorMapa* UConstructorMapa::ColocarSpawnJugador(FVector2D Posicion)
     {
         EstablecerTipoTile(Posicion.X, Posicion.Y, ETipoTile::SpawnJugador);
 
-		// Limpiar área alrededor del spawn del jugador
-        TArray<FVector2D> AreaLimpia = {
+        // Crear zona segura más grande alrededor del spawn del jugador (3x3)
+        TArray<FVector2D> ZonaSegura = {
+            // Posición del spawn
+            FVector2D(Posicion.X, Posicion.Y),
+            // Posiciones adyacentes
             FVector2D(Posicion.X + 1, Posicion.Y),
-            FVector2D(Posicion.X, Posicion.Y + 1)
+            FVector2D(Posicion.X, Posicion.Y + 1),
+            FVector2D(Posicion.X + 1, Posicion.Y + 1),
+            // Posiciones diagonales
+            FVector2D(Posicion.X - 1, Posicion.Y),
+            FVector2D(Posicion.X, Posicion.Y - 1),
+            FVector2D(Posicion.X - 1, Posicion.Y - 1),
+            FVector2D(Posicion.X + 1, Posicion.Y - 1),
+            FVector2D(Posicion.X - 1, Posicion.Y + 1)
         };
 
-        for (const FVector2D& Pos : AreaLimpia)
+        for (const FVector2D& Pos : ZonaSegura)
         {
             if (EsPosicionValida(Pos.X, Pos.Y))
             {
-                EstablecerTipoTile(Pos.X, Pos.Y, ETipoTile::Vacio);
+                // Solo establecer como vacío si no es el spawn del jugador Y si no es un bloque de acero
+                if (Pos != Posicion && DatosMapaActual.ObtenerTipo(Pos.X, Pos.Y) != ETipoTile::BloqueIndestructible)
+                {
+                    EstablecerTipoTile(Pos.X, Pos.Y, ETipoTile::Vacio);
+                }
             }
         }
+        
+        UE_LOG(LogTemp, Warning, TEXT("ConstructorMapa: Zona segura creada alrededor del spawn del jugador en (%f, %f)"), Posicion.X, Posicion.Y);
+        UE_LOG(LogTemp, Warning, TEXT("ConstructorMapa: Zona segura de 3x3 tiles (9 posiciones totales) - Bloques de acero preservados"));
     }
 
     return this;
@@ -125,7 +149,7 @@ UConstructorMapa* UConstructorMapa::ColocarSalidaNivel(FVector2D Posicion)
 
 UConstructorMapa* UConstructorMapa::LlenarConBloquesDestructibles(float Porcentaje, TSubclassOf<AActor> ClaseBloque)
 {
-	// Solo llenar espacios vacíos
+    // Solo llenar espacios vacíos, excluyendo la zona segura del spawn del jugador
     TArray<FVector2D> EspaciosVacios;
 
     for (int32 Y = 1; Y < DatosMapaActual.Alto - 1; Y++)
@@ -134,13 +158,40 @@ UConstructorMapa* UConstructorMapa::LlenarConBloquesDestructibles(float Porcenta
         {
             if (DatosMapaActual.ObtenerTipo(X, Y) == ETipoTile::Vacio)
             {
-                EspaciosVacios.Add(FVector2D(X, Y));
+                // Verificar si está en la zona segura del spawn del jugador
+                bool bEnZonaSegura = false;
+                
+                // Buscar el spawn del jugador
+                for (int32 SY = 0; SY < DatosMapaActual.Alto; SY++)
+                {
+                    for (int32 SX = 0; SX < DatosMapaActual.Ancho; SX++)
+                    {
+                        if (DatosMapaActual.ObtenerTipo(SX, SY) == ETipoTile::SpawnJugador)
+                        {
+                            // Verificar si la posición actual está en la zona segura (3x3)
+                            if (FMath::Abs(X - SX) <= 1 && FMath::Abs(Y - SY) <= 1)
+                            {
+                                bEnZonaSegura = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (bEnZonaSegura) break;
+                }
+                
+                // Solo agregar si no está en la zona segura
+                if (!bEnZonaSegura)
+                {
+                    EspaciosVacios.Add(FVector2D(X, Y));
+                }
             }
         }
     }
 
     // Calcular cantidad de bloques a colocar
     int32 CantidadBloques = FMath::RoundToInt(EspaciosVacios.Num() * (Porcentaje / 100.0f));
+
+    UE_LOG(LogTemp, Warning, TEXT("ConstructorMapa: Espacios disponibles para bloques destructibles: %d, Cantidad a colocar: %d"), EspaciosVacios.Num(), CantidadBloques);
 
     // Colocar bloques aleatoriamente
     for (int32 i = 0; i < CantidadBloques && EspaciosVacios.Num() > 0; i++)

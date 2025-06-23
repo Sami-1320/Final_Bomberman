@@ -1,6 +1,7 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 #include "Bomba.h"
 #include "Components/StaticMeshComponent.h"
+#include "Particles/ParticleSystemComponent.h"
 #include "Engine/World.h"
 #include "TimerManager.h"
 #include "GameEventManager.h"
@@ -9,6 +10,10 @@
 #include "Kismet/GameplayStatics.h"
 #include "PowerUpSpawner.h"
 #include "GameFramework/DamageType.h"
+#include "Kismet/KismetSystemLibrary.h"
+#include "Enemigo.h"
+#include "FinalBomberManGameMode.h"
+#include "GameplayFacade.h"
 
 ABomba::ABomba()
 {
@@ -18,10 +23,28 @@ ABomba::ABomba()
     MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComponent"));
     RootComponent = MeshComponent;
 
+    // Crear el componente de partículas para el efecto de explosión
+    ExplosionEffectComponent = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("ExplosionEffectComponent"));
+    ExplosionEffectComponent->SetupAttachment(RootComponent);
+    ExplosionEffectComponent->SetAutoActivate(false); // No activar automáticamente
+
+    // Cargar el sistema de partículas de explosión
+    static ConstructorHelpers::FObjectFinder<UParticleSystem> ExplosionParticleAsset(TEXT("/Script/Engine.ParticleSystem'/Game/StarterContent/Particles/P_Explosion.P_Explosion'"));
+    if (ExplosionParticleAsset.Succeeded())
+    {
+        ExplosionParticleSystem = ExplosionParticleAsset.Object;
+        UE_LOG(LogTemp, Warning, TEXT("Bomba Constructor: Sistema de partículas de explosión cargado correctamente"));
+    }
+    else
+    {
+        ExplosionParticleSystem = nullptr;
+        UE_LOG(LogTemp, Error, TEXT("Bomba Constructor: ERROR - No se pudo cargar el sistema de partículas de explosión"));
+    }
+
     // Configurar propiedades por defecto
     TipoBomba = ETipoBomba::Normal;
     RadioExplosion = 1;
-    TiempoExplosion = 3.0f;
+    TiempoExplosion = 1.5f;
     EsRemota = false;
     Dano = 100;
     bExplosionIniciada = false;
@@ -133,7 +156,7 @@ void ABomba::ConfigurarMesh()
         MeshComponent->SetMaterial(0, MaterialPulso.Object);
     }
 
-    SetActorScale3D(FVector(1.5f, 1.5f, 1.5f));
+    SetActorScale3D(FVector(1.0f, 1.0f, 1.0f));
 }
 
 void ABomba::OnExplosionCompleta()
@@ -151,11 +174,17 @@ void ABomba::OnExplosionCompleta()
     // Notificar eventos (se maneja a través del GameplayFacade)
     UE_LOG(LogTemp, Warning, TEXT("¡BOOM! Bomba explotó en (%f, %f) con radio %d"), PosicionBomba.X, PosicionBomba.Y, RadioExplosion);
 
+    // Reproducir efecto de explosión
+    ReproducirEfectoExplosion();
+
     // Realizar explosión en todas las direcciones
     RealizarExplosionEnTodasDirecciones(PosicionBomba);
 
-    // Destruir la bomba
-    Destroy();
+    // Destruir la bomba después de un pequeño delay para que se vea el efecto
+    FTimerHandle TimerDestruccion;
+    GetWorldTimerManager().SetTimer(TimerDestruccion, [this]() {
+        Destroy();
+    }, 0.1f, false); // Reducido de 0.5s a 0.1s para que sea casi instantáneo
 }
 
 void ABomba::RealizarExplosionEnTodasDirecciones(FVector2D PosicionCentro)
@@ -163,6 +192,34 @@ void ABomba::RealizarExplosionEnTodasDirecciones(FVector2D PosicionCentro)
     if (!GetWorld())
     {
         return;
+    }
+
+    // Primero, buscar enemigos en el radio de explosión usando overlap
+    float RadioExplosionUnidades = RadioExplosion * 200.0f; // Convertir a unidades del mundo
+    TArray<AActor*> ActoresEnRadio;
+    TArray<TEnumAsByte<EObjectTypeQuery>> TiposObjeto;
+    TiposObjeto.Add(UEngineTypes::ConvertToObjectType(ECollisionChannel::ECC_Pawn));
+    
+    UClass* ClaseEnemigo = AEnemigo::StaticClass();
+    
+    UKismetSystemLibrary::SphereOverlapActors(
+        GetWorld(),
+        FVector(PosicionCentro.X, PosicionCentro.Y, 100.0f),
+        RadioExplosionUnidades,
+        TiposObjeto,
+        ClaseEnemigo,
+        TArray<AActor*>(),
+        ActoresEnRadio
+    );
+
+    // Aplicar daño a todos los enemigos encontrados
+    for (AActor* Enemigo : ActoresEnRadio)
+    {
+        if (Enemigo && EsEnemigo(Enemigo))
+        {
+            UGameplayStatics::ApplyDamage(Enemigo, Dano, GetInstigatorController(), this, UDamageType::StaticClass());
+            UE_LOG(LogTemp, Warning, TEXT("Enemigo dañado por explosión: %s"), *Enemigo->GetName());
+        }
     }
 
     // Direcciones: Norte, Sur, Este, Oeste
@@ -231,6 +288,37 @@ void ABomba::DestruirBloque(AActor* Bloque)
         
         UE_LOG(LogTemp, Log, TEXT("Bloque destruido: %s"), *Bloque->GetName());
 
+        // Notificar al GameEventManager que se destruyó un bloque
+        FVector2D PosicionBloque = FVector2D(Bloque->GetActorLocation().X, Bloque->GetActorLocation().Y);
+        
+        // Obtener el GameplayFacade a través del GameMode
+        AFinalBomberManGameMode* GameMode = Cast<AFinalBomberManGameMode>(GetWorld()->GetAuthGameMode());
+        if (GameMode)
+        {
+            UGameplayFacade* GameplayFacade = GameMode->ObtenerGameplayFacade();
+            if (GameplayFacade)
+            {
+                UGameEventManager* GameEventManager = GameplayFacade->ObtenerGameEventManager();
+                if (GameEventManager)
+                {
+                    GameEventManager->NotificarBloqueDestruido(PosicionBloque);
+                    UE_LOG(LogTemp, Warning, TEXT("Bomba DestruirBloque: Notificación enviada al GameEventManager a través de GameMode"));
+                }
+                else
+                {
+                    UE_LOG(LogTemp, Error, TEXT("Bomba DestruirBloque: ERROR - GameEventManager es NULL"));
+                }
+            }
+            else
+            {
+                UE_LOG(LogTemp, Error, TEXT("Bomba DestruirBloque: ERROR - GameplayFacade es NULL"));
+            }
+        }
+        else
+        {
+            UE_LOG(LogTemp, Error, TEXT("Bomba DestruirBloque: ERROR - No se pudo obtener GameMode"));
+        }
+        
         // Intentar generar un power-up en la posición del bloque destruido
         if (PowerUpSpawner)
         {
@@ -265,4 +353,41 @@ bool ABomba::EsBloqueIndestructible(AActor* Actor)
     FString ActorName = Actor->GetName().ToLower();
     return ActorName.Contains(TEXT("acero")) || 
            ActorName.Contains(TEXT("indestructible"));
+}
+
+bool ABomba::EsEnemigo(AActor* Actor)
+{
+    if (!Actor)
+    {
+        return false;
+    }
+
+    // Verificar si es un enemigo basado en el nombre o clase
+    FString ActorName = Actor->GetName().ToLower();
+    return ActorName.Contains(TEXT("enemigo")) || 
+           ActorName.Contains(TEXT("enemy")) ||
+           Actor->GetClass()->GetName().Contains(TEXT("Enemigo"));
+}
+
+void ABomba::ReproducirEfectoExplosion()
+{
+    if (!GetWorld() || !ExplosionParticleSystem)
+    {
+        UE_LOG(LogTemp, Error, TEXT("ERROR: No se puede reproducir efecto de explosión - Mundo o sistema de partículas no válido"));
+        return;
+    }
+
+    // Crear el efecto de explosión en la posición de la bomba
+    FVector PosicionExplosion = GetActorLocation();
+    UGameplayStatics::SpawnEmitterAtLocation(
+        GetWorld(),
+        ExplosionParticleSystem,
+        PosicionExplosion,
+        FRotator::ZeroRotator,
+        FVector(1.0f, 1.0f, 1.0f), // Escala normal
+        true, // Auto destroy
+        EPSCPoolMethod::AutoRelease
+    );
+
+    UE_LOG(LogTemp, Warning, TEXT("Efecto de explosión reproducido en (%f, %f, %f)"), PosicionExplosion.X, PosicionExplosion.Y, PosicionExplosion.Z);
 } 

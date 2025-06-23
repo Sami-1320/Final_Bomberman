@@ -13,6 +13,7 @@ class ABomba;
 class AEnemigo;
 class AFinalBomberManCharacter;
 class APowerUp;
+class UGameEventManager;
 class UWorld;
 enum class ETipoEnemigo : uint8;
 enum class ETipoPowerUp : uint8;
@@ -21,7 +22,8 @@ enum class ETipoPowerUp : uint8;
 #endif
 #define FINALBOMBERMAN_GameplayFacade_generated_h
 
-#define FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_GameplayFacade_h_23_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_GameplayFacade_h_23_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execObtenerGameEventManager); \
 	DECLARE_FUNCTION(execEstaJuegoTerminado); \
 	DECLARE_FUNCTION(execEstaJuegoPausado); \
 	DECLARE_FUNCTION(execObtenerNivelActual); \
@@ -44,6 +46,7 @@ enum class ETipoPowerUp : uint8;
 	DECLARE_FUNCTION(execCancelarBomba); \
 	DECLARE_FUNCTION(execDetonarBomba); \
 	DECLARE_FUNCTION(execColocarBomba); \
+	DECLARE_FUNCTION(execCambiarNivelPorPuntos); \
 	DECLARE_FUNCTION(execReiniciarNivel); \
 	DECLARE_FUNCTION(execCompletarNivel); \
 	DECLARE_FUNCTION(execCargarNivel); \
@@ -54,7 +57,7 @@ enum class ETipoPowerUp : uint8;
 	DECLARE_FUNCTION(execInicializarJuego);
 
 
-#define FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_GameplayFacade_h_23_INCLASS_NO_PURE_DECLS \
+#define FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_GameplayFacade_h_23_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUGameplayFacade(); \
 	friend struct Z_Construct_UClass_UGameplayFacade_Statics; \
@@ -63,7 +66,7 @@ public: \
 	DECLARE_SERIALIZER(UGameplayFacade)
 
 
-#define FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_GameplayFacade_h_23_ENHANCED_CONSTRUCTORS \
+#define FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_GameplayFacade_h_23_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	UGameplayFacade(UGameplayFacade&&); \
@@ -75,13 +78,13 @@ public: \
 	NO_API virtual ~UGameplayFacade();
 
 
-#define FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_GameplayFacade_h_20_PROLOG
-#define FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_GameplayFacade_h_23_GENERATED_BODY \
+#define FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_GameplayFacade_h_20_PROLOG
+#define FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_GameplayFacade_h_23_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_GameplayFacade_h_23_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_GameplayFacade_h_23_INCLASS_NO_PURE_DECLS \
-	FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_GameplayFacade_h_23_ENHANCED_CONSTRUCTORS \
+	FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_GameplayFacade_h_23_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_GameplayFacade_h_23_INCLASS_NO_PURE_DECLS \
+	FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_GameplayFacade_h_23_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -89,7 +92,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> FINALBOMBERMAN_API UClass* StaticClass<class UGameplayFacade>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_GameplayFacade_h
+#define CURRENT_FILE_ID FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_GameplayFacade_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

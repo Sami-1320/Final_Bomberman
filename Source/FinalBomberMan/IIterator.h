@@ -21,3 +21,6 @@ public:
     virtual bool IsDone() const = 0;
     virtual UObject* CurrentItem() = 0;
 }; 
+
+
+

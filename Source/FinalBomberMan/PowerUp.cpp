@@ -29,13 +29,64 @@ APowerUp::APowerUp()
     Valor = 1;
     EsPermanente = false;
 
-    ConfigurarMesh();
+    // Cargar todos los materiales en el constructor
+    static ConstructorHelpers::FObjectFinder<UMaterialInterface> MaterialBombaExtraAsset(TEXT("/Script/Engine.Material'/Game/StarterContent/Materials/M_Metal_Brushed_Nickel.M_Metal_Brushed_Nickel'"));
+    MaterialBombaExtra = MaterialBombaExtraAsset.Succeeded() ? MaterialBombaExtraAsset.Object : nullptr;
+    UE_LOG(LogTemp, Warning, TEXT("PowerUp Constructor: MaterialBombaExtra cargado: %s"), MaterialBombaExtra ? TEXT("SÍ") : TEXT("NO"));
+    
+    static ConstructorHelpers::FObjectFinder<UMaterialInterface> MaterialRadioExplosionAsset(TEXT("/Script/Engine.Material'/Game/StarterContent/Materials/M_Metal_Copper.M_Metal_Copper'"));
+    MaterialRadioExplosion = MaterialRadioExplosionAsset.Succeeded() ? MaterialRadioExplosionAsset.Object : nullptr;
+    UE_LOG(LogTemp, Warning, TEXT("PowerUp Constructor: MaterialRadioExplosion cargado: %s"), MaterialRadioExplosion ? TEXT("SÍ") : TEXT("NO"));
+    
+    static ConstructorHelpers::FObjectFinder<UMaterialInterface> MaterialVelocidadAsset(TEXT("/Script/Engine.Material'/Game/StarterContent/Materials/M_Metal_Gold.M_Metal_Gold'"));
+    MaterialVelocidad = MaterialVelocidadAsset.Succeeded() ? MaterialVelocidadAsset.Object : nullptr;
+    UE_LOG(LogTemp, Warning, TEXT("PowerUp Constructor: MaterialVelocidad cargado: %s"), MaterialVelocidad ? TEXT("SÍ") : TEXT("NO"));
+    
+    static ConstructorHelpers::FObjectFinder<UMaterialInterface> MaterialEscudoAsset(TEXT("/Script/Engine.Material'/Game/StarterContent/Materials/M_Metal_Steel.M_Metal_Steel'"));
+    MaterialEscudo = MaterialEscudoAsset.Succeeded() ? MaterialEscudoAsset.Object : nullptr;
+    UE_LOG(LogTemp, Warning, TEXT("PowerUp Constructor: MaterialEscudo cargado: %s"), MaterialEscudo ? TEXT("SÍ") : TEXT("NO"));
+    
+    static ConstructorHelpers::FObjectFinder<UMaterialInterface> MaterialBombaRemotaAsset(TEXT("/Script/Engine.Material'/Game/StarterContent/Materials/M_Metal_Chrome.M_Metal_Chrome'"));
+    MaterialBombaRemota = MaterialBombaRemotaAsset.Succeeded() ? MaterialBombaRemotaAsset.Object : nullptr;
+    UE_LOG(LogTemp, Warning, TEXT("PowerUp Constructor: MaterialBombaRemota cargado: %s"), MaterialBombaRemota ? TEXT("SÍ") : TEXT("NO"));
+    
+    static ConstructorHelpers::FObjectFinder<UMaterialInterface> MaterialInmortalidadAsset(TEXT("/Script/Engine.Material'/Game/StarterContent/Materials/M_Metal_Brushed_Steel.M_Metal_Brushed_Steel'"));
+    MaterialInmortalidad = MaterialInmortalidadAsset.Succeeded() ? MaterialInmortalidadAsset.Object : nullptr;
+    UE_LOG(LogTemp, Warning, TEXT("PowerUp Constructor: MaterialInmortalidad cargado: %s"), MaterialInmortalidad ? TEXT("SÍ") : TEXT("NO"));
+    
+    static ConstructorHelpers::FObjectFinder<UMaterialInterface> MaterialSaltoAltoAsset(TEXT("/Script/Engine.Material'/Game/StarterContent/Materials/M_Glass.M_Glass'"));
+    MaterialSaltoAlto = MaterialSaltoAltoAsset.Succeeded() ? MaterialSaltoAltoAsset.Object : nullptr;
+    UE_LOG(LogTemp, Warning, TEXT("PowerUp Constructor: MaterialSaltoAlto cargado: %s"), MaterialSaltoAlto ? TEXT("SÍ") : TEXT("NO"));
+    
+    static ConstructorHelpers::FObjectFinder<UMaterialInterface> MaterialVidaExtraAsset(TEXT("/Script/Engine.Material'/Game/StarterContent/Materials/M_Plastic_White.M_Plastic_White'"));
+    MaterialVidaExtra = MaterialVidaExtraAsset.Succeeded() ? MaterialVidaExtraAsset.Object : nullptr;
+    UE_LOG(LogTemp, Warning, TEXT("PowerUp Constructor: MaterialVidaExtra cargado: %s"), MaterialVidaExtra ? TEXT("SÍ") : TEXT("NO"));
+    
+    static ConstructorHelpers::FObjectFinder<UMaterialInterface> MaterialDoradoAsset(TEXT("/Script/Engine.Material'/Game/StarterContent/Materials/M_Metal_Gold.M_Metal_Gold'"));
+    MaterialDorado = MaterialDoradoAsset.Succeeded() ? MaterialDoradoAsset.Object : nullptr;
+    UE_LOG(LogTemp, Warning, TEXT("PowerUp Constructor: MaterialDorado cargado: %s"), MaterialDorado ? TEXT("SÍ") : TEXT("NO"));
+
+    // Solo configurar la malla básica, el material se configurará después cuando se establezca el tipo
+    ConfigurarMeshBasico();
 }
 
 void APowerUp::BeginPlay()
 {
     Super::BeginPlay();
-    ConfigurarMesh();
+    
+    // Configurar el material específico según el tipo de power-up
+    UE_LOG(LogTemp, Warning, TEXT("PowerUp BeginPlay: Configurando material para tipo %d"), (int32)TipoPowerUp);
+    UMaterialInterface* Material = ObtenerMaterialPorTipo(TipoPowerUp);
+    if (Material)
+    {
+        MeshComponent->SetMaterial(0, Material);
+        UE_LOG(LogTemp, Warning, TEXT("PowerUp BeginPlay: Material aplicado correctamente para tipo %d"), (int32)TipoPowerUp);
+    }
+    else
+    {
+        UE_LOG(LogTemp, Error, TEXT("PowerUp BeginPlay: ERROR - No se pudo obtener material para tipo %d"), (int32)TipoPowerUp);
+    }
+    
     ConfigurarCollision();
 }
 
@@ -137,6 +188,8 @@ void APowerUp::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* 
         case ETipoPowerUp::Escudo: NombreTipo = "Escudo"; break;
         case ETipoPowerUp::BombaRemota: NombreTipo = "Bomba Remota"; break;
         case ETipoPowerUp::Inmortalidad: NombreTipo = "Inmortalidad"; break;
+        case ETipoPowerUp::SaltoAlto: NombreTipo = "Salto Alto"; break;
+        case ETipoPowerUp::VidaExtra: NombreTipo = "Vida Extra"; break;
         }
         
         // Mostrar mensaje con power-ups restantes
@@ -165,10 +218,16 @@ void APowerUp::ConfigurarMesh()
     }
 
     // Configurar material según el tipo de power-up
+    UE_LOG(LogTemp, Warning, TEXT("PowerUp: Configurando material para tipo: %d"), (int32)TipoPowerUp);
     UMaterialInterface* Material = ObtenerMaterialPorTipo(TipoPowerUp);
     if (Material)
     {
         MeshComponent->SetMaterial(0, Material);
+        UE_LOG(LogTemp, Warning, TEXT("PowerUp: Material aplicado correctamente para tipo %d"), (int32)TipoPowerUp);
+    }
+    else
+    {
+        UE_LOG(LogTemp, Error, TEXT("PowerUp: ERROR - No se pudo obtener material para tipo %d"), (int32)TipoPowerUp);
     }
 
     // Configurar escala y propiedades físicas
@@ -182,48 +241,57 @@ void APowerUp::ConfigurarMesh()
 
 UMaterialInterface* APowerUp::ObtenerMaterialPorTipo(ETipoPowerUp Tipo)
 {
-    // Usar el material dorado para todos los power-ups
-    static ConstructorHelpers::FObjectFinder<UMaterialInterface> MaterialDorado(TEXT("/Script/Engine.Material'/Game/StarterContent/Materials/M_Metal_Gold.M_Metal_Gold'"));
-    if (MaterialDorado.Succeeded())
-    {
-        return MaterialDorado.Object;
-    }
+    UE_LOG(LogTemp, Warning, TEXT("PowerUp ObtenerMaterialPorTipo: Buscando material para tipo %d"), (int32)Tipo);
     
-    // Fallback a materiales básicos si el dorado no se encuentra
+    // Usar materiales específicos según el tipo de power-up
     switch (Tipo)
     {
     case ETipoPowerUp::BombaExtra:
         {
-            static ConstructorHelpers::FObjectFinder<UMaterialInterface> Material(TEXT("/Script/Engine.Material'/Game/StarterContent/Materials/M_Basic_Black.M_Basic_Black'"));
-            return Material.Succeeded() ? Material.Object : nullptr;
+            UE_LOG(LogTemp, Warning, TEXT("PowerUp ObtenerMaterialPorTipo: Tipo BombaExtra - Material Níquel Cepillado"));
+            return MaterialBombaExtra;
         }
     case ETipoPowerUp::RadioExplosion:
         {
-            static ConstructorHelpers::FObjectFinder<UMaterialInterface> Material(TEXT("/Script/Engine.Material'/Game/StarterContent/Materials/M_Basic_Red.M_Basic_Red'"));
-            return Material.Succeeded() ? Material.Object : nullptr;
+            UE_LOG(LogTemp, Warning, TEXT("PowerUp ObtenerMaterialPorTipo: Tipo RadioExplosion - Material Cobre"));
+            return MaterialRadioExplosion;
         }
     case ETipoPowerUp::Velocidad:
         {
-            static ConstructorHelpers::FObjectFinder<UMaterialInterface> Material(TEXT("/Script/Engine.Material'/Game/StarterContent/Materials/M_Basic_Green.M_Basic_Green'"));
-            return Material.Succeeded() ? Material.Object : nullptr;
+            UE_LOG(LogTemp, Warning, TEXT("PowerUp ObtenerMaterialPorTipo: Tipo Velocidad - Material Oro"));
+            return MaterialVelocidad;
         }
     case ETipoPowerUp::Escudo:
         {
-            static ConstructorHelpers::FObjectFinder<UMaterialInterface> Material(TEXT("/Script/Engine.Material'/Game/StarterContent/Materials/M_Basic_Blue.M_Basic_Blue'"));
-            return Material.Succeeded() ? Material.Object : nullptr;
+            UE_LOG(LogTemp, Warning, TEXT("PowerUp ObtenerMaterialPorTipo: Tipo Escudo - Material Acero"));
+            return MaterialEscudo;
         }
     case ETipoPowerUp::BombaRemota:
         {
-            static ConstructorHelpers::FObjectFinder<UMaterialInterface> Material(TEXT("/Script/Engine.Material'/Game/StarterContent/Materials/M_Basic_Purple.M_Basic_Purple'"));
-            return Material.Succeeded() ? Material.Object : nullptr;
+            UE_LOG(LogTemp, Warning, TEXT("PowerUp ObtenerMaterialPorTipo: Tipo BombaRemota - Material Cromo"));
+            return MaterialBombaRemota;
         }
     case ETipoPowerUp::Inmortalidad:
         {
-            static ConstructorHelpers::FObjectFinder<UMaterialInterface> Material(TEXT("/Script/Engine.Material'/Game/StarterContent/Materials/M_Basic_Yellow.M_Basic_Yellow'"));
-            return Material.Succeeded() ? Material.Object : nullptr;
+            UE_LOG(LogTemp, Warning, TEXT("PowerUp ObtenerMaterialPorTipo: Tipo Inmortalidad - Material Acero Cepillado"));
+            return MaterialInmortalidad;
+        }
+    case ETipoPowerUp::SaltoAlto:
+        {
+            UE_LOG(LogTemp, Warning, TEXT("PowerUp ObtenerMaterialPorTipo: Tipo SaltoAlto - Material Vidrio"));
+            return MaterialSaltoAlto;
+        }
+    case ETipoPowerUp::VidaExtra:
+        {
+            UE_LOG(LogTemp, Warning, TEXT("PowerUp ObtenerMaterialPorTipo: Tipo VidaExtra - Material Plástico Blanco"));
+            return MaterialVidaExtra;
         }
     default:
-        return nullptr;
+        {
+            UE_LOG(LogTemp, Warning, TEXT("PowerUp ObtenerMaterialPorTipo: Tipo DESCONOCIDO (%d) - Usando Material Dorado por defecto"), (int32)Tipo);
+            // Fallback al material dorado para tipos no especificados
+            return MaterialDorado;
+        }
     }
 }
 
@@ -254,4 +322,27 @@ int32 APowerUp::ContarPowerUpsRestantes()
     }
     
     return Contador;
+}
+
+void APowerUp::ConfigurarMeshBasico()
+{
+    // Cargar la malla de cápsula estrecha especificada
+    static ConstructorHelpers::FObjectFinder<UStaticMesh> CapsuleMeshAsset(TEXT("/Game/StarterContent/Shapes/Shape_NarrowCapsule"));
+    if (CapsuleMeshAsset.Succeeded())
+    {
+        MeshComponent->SetStaticMesh(CapsuleMeshAsset.Object);
+        UE_LOG(LogTemp, Log, TEXT("PowerUp: Malla de cápsula estrecha cargada correctamente"));
+    }
+    else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("PowerUp: No se pudo cargar la malla de cápsula estrecha"));
+    }
+
+    // Configurar escala y propiedades físicas
+    SetActorScale3D(FVector(0.8f, 0.8f, 0.8f));
+    
+    // Configurar propiedades físicas
+    MeshComponent->SetSimulatePhysics(false);
+    MeshComponent->SetEnableGravity(false);
+    MeshComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision); // La colisión se maneja con el SphereComponent
 } 

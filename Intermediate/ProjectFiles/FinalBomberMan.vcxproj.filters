@@ -11,6 +11,8 @@
     <None Include="..\..\Source\FinalBomberManEditor.Target.cs">
       <Filter>Source</Filter>
     </None>
+    <None Include="..\..\.gitattributes" />
+    <None Include="..\..\.gitignore" />
     <None Include="..\..\.vsconfig" />
     <Filter Include="Config">
       <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
@@ -51,6 +53,12 @@
     <ClCompile Include="..\..\Source\FinalBomberMan\BloqueMadera.h">
       <Filter>Source\FinalBomberMan</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\Bomba.cpp">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\Bomba.h">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\FinalBomberMan\ConstructorMapa.cpp">
       <Filter>Source\FinalBomberMan</Filter>
     </ClCompile>
@@ -61,6 +69,12 @@
       <Filter>Source\FinalBomberMan</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\FinalBomberMan\DirectorNiveles.h">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\Enemigo.cpp">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\Enemigo.h">
       <Filter>Source\FinalBomberMan</Filter>
     </ClCompile>
     <None Include="..\..\Source\FinalBomberMan\FinalBomberMan.Build.cs">
@@ -84,16 +98,64 @@
     <ClCompile Include="..\..\Source\FinalBomberMan\FinalBomberManGameMode.h">
       <Filter>Source\FinalBomberMan</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\FinalBomberMan\IBloqueInterfaz.cpp">
+    <ClCompile Include="..\..\Source\FinalBomberMan\GameEventManager.cpp">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\GameEventManager.h">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\GameplayFacade.cpp">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\GameplayFacade.h">
       <Filter>Source\FinalBomberMan</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\FinalBomberMan\IBloqueInterfaz.h">
       <Filter>Source\FinalBomberMan</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\FinalBomberMan\ITileInterfaz.cpp">
+    <ClCompile Include="..\..\Source\FinalBomberMan\IElementoMapa.h">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\IGameObserver.h">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\IIterator.h">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\IPrototype.h">
       <Filter>Source\FinalBomberMan</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\FinalBomberMan\ITileInterfaz.h">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\MapTileIterator.cpp">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\MapTileIterator.h">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\PatronesIntegracion.cpp">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\PatronesIntegracion.h">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\PowerUp.cpp">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\PowerUp.h">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\PowerUpSpawner.cpp">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\PowerUpSpawner.h">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\SeccionMapa.cpp">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\SeccionMapa.h">
       <Filter>Source\FinalBomberMan</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\FinalBomberMan\Tile.cpp">
@@ -106,6 +168,18 @@
       <Filter>Source\FinalBomberMan</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\FinalBomberMan\TipoTile.h">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\UIManager.cpp">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\UIManager.h">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\VFXManager.cpp">
+      <Filter>Source\FinalBomberMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FinalBomberMan\VFXManager.h">
       <Filter>Source\FinalBomberMan</Filter>
     </ClCompile>
   </ItemGroup>

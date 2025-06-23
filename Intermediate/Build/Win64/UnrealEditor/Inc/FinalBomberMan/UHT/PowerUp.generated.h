@@ -19,7 +19,7 @@ struct FHitResult;
 #endif
 #define FINALBOMBERMAN_PowerUp_generated_h
 
-#define FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_PowerUp_h_23_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_PowerUp_h_25_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execOnOverlapBegin); \
 	DECLARE_FUNCTION(execEsPowerUpPermanente); \
 	DECLARE_FUNCTION(execObtenerValor); \
@@ -29,7 +29,7 @@ struct FHitResult;
 	DECLARE_FUNCTION(execAplicarPowerUp);
 
 
-#define FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_PowerUp_h_23_INCLASS_NO_PURE_DECLS \
+#define FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_PowerUp_h_25_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAPowerUp(); \
 	friend struct Z_Construct_UClass_APowerUp_Statics; \
@@ -39,7 +39,7 @@ public: \
 	virtual UObject* _getUObject() const override { return const_cast<APowerUp*>(this); }
 
 
-#define FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_PowerUp_h_23_ENHANCED_CONSTRUCTORS \
+#define FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_PowerUp_h_25_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	APowerUp(APowerUp&&); \
@@ -51,13 +51,13 @@ public: \
 	NO_API virtual ~APowerUp();
 
 
-#define FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_PowerUp_h_20_PROLOG
-#define FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_PowerUp_h_23_GENERATED_BODY \
+#define FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_PowerUp_h_22_PROLOG
+#define FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_PowerUp_h_25_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_PowerUp_h_23_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_PowerUp_h_23_INCLASS_NO_PURE_DECLS \
-	FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_PowerUp_h_23_ENHANCED_CONSTRUCTORS \
+	FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_PowerUp_h_25_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_PowerUp_h_25_INCLASS_NO_PURE_DECLS \
+	FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_PowerUp_h_25_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -65,7 +65,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> FINALBOMBERMAN_API UClass* StaticClass<class APowerUp>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_PowerUp_h
+#define CURRENT_FILE_ID FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_PowerUp_h
 
 
 #define FOREACH_ENUM_ETIPOPOWERUP(op) \
@@ -74,7 +74,9 @@ template<> FINALBOMBERMAN_API UClass* StaticClass<class APowerUp>();
 	op(ETipoPowerUp::Velocidad) \
 	op(ETipoPowerUp::Escudo) \
 	op(ETipoPowerUp::BombaRemota) \
-	op(ETipoPowerUp::Inmortalidad) 
+	op(ETipoPowerUp::Inmortalidad) \
+	op(ETipoPowerUp::SaltoAlto) \
+	op(ETipoPowerUp::VidaExtra) 
 
 enum class ETipoPowerUp : uint8;
 template<> struct TIsUEnumClass<ETipoPowerUp> { enum { Value = true }; };

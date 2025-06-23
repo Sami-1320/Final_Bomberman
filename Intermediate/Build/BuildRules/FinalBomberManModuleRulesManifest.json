@@ -1,8 +1,8 @@
 {
 	"SourceFiles": [
-		"C:\\Users\\samsa\\Documents\\Unreal Projects\\FinalSam\\Source\\FinalBomberMan\\FinalBomberMan.Build.cs",
-		"C:\\Users\\samsa\\Documents\\Unreal Projects\\FinalSam\\Source\\FinalBomberMan.Target.cs",
-		"C:\\Users\\samsa\\Documents\\Unreal Projects\\FinalSam\\Source\\FinalBomberManEditor.Target.cs"
+		"C:\\Users\\samsa\\Documents\\Unreal Projects\\Final_Bomberman\\Source\\FinalBomberMan\\FinalBomberMan.Build.cs",
+		"C:\\Users\\samsa\\Documents\\Unreal Projects\\Final_Bomberman\\Source\\FinalBomberMan.Target.cs",
+		"C:\\Users\\samsa\\Documents\\Unreal Projects\\Final_Bomberman\\Source\\FinalBomberManEditor.Target.cs"
 	],
 	"EngineVersion": "5.5.4"
 }

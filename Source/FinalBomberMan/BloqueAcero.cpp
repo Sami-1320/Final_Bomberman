@@ -8,7 +8,7 @@ ABloqueAcero::ABloqueAcero()
 {
     PrimaryActorTick.bCanEverTick = false;
 
-    // Crear el componente de malla estática
+    // Crear el componente de malla estï¿½tica
     MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComponent"));
     RootComponent = MeshComponent;
 
@@ -20,7 +20,7 @@ ABloqueAcero::ABloqueAcero()
     }
 
     // Cargar material de acero
-    static ConstructorHelpers::FObjectFinder<UMaterialInterface> MaterialAcero(TEXT("/Script/Engine.Material'/Game/StarterContent/Materials/M_Metal_Steel.M_Metal_Steel'"));
+    static ConstructorHelpers::FObjectFinder<UMaterialInterface> MaterialAcero(TEXT("/Script/Engine.Material'/Game/Pack_Bonus/Materials/M_Pack_Bonus_Wall_3.M_Pack_Bonus_Wall_3'"));
     if (MaterialAcero.Succeeded())
     {
         MeshComponent->SetMaterial(0, MaterialAcero.Object);
@@ -37,7 +37,7 @@ void ABloqueAcero::BeginPlay()
 
 void ABloqueAcero::ConfigurarBloque()
 {
-    // Configuración específica del bloque de acero
+    // Configuraciï¿½n especï¿½fica del bloque de acero
     SetActorScale3D(FVector(2.0f, 2.0f, 2.0f));
 }
 

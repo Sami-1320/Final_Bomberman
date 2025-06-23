@@ -19,14 +19,14 @@ struct FDatosMapa;
 #endif
 #define FINALBOMBERMAN_ConstructorMapa_generated_h
 
-#define FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_ConstructorMapa_h_15_GENERATED_BODY \
+#define FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_ConstructorMapa_h_15_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FDatosMapa_Statics; \
 	FINALBOMBERMAN_API static class UScriptStruct* StaticStruct();
 
 
 template<> FINALBOMBERMAN_API UScriptStruct* StaticStruct<struct FDatosMapa>();
 
-#define FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_ConstructorMapa_h_77_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_ConstructorMapa_h_77_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execObtenerTileEn); \
 	DECLARE_FUNCTION(execLimpiarMapa); \
 	DECLARE_FUNCTION(execInicializar); \
@@ -40,7 +40,7 @@ template<> FINALBOMBERMAN_API UScriptStruct* StaticStruct<struct FDatosMapa>();
 	DECLARE_FUNCTION(execColocarBordesIndestructibles);
 
 
-#define FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_ConstructorMapa_h_77_INCLASS_NO_PURE_DECLS \
+#define FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_ConstructorMapa_h_77_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUConstructorMapa(); \
 	friend struct Z_Construct_UClass_UConstructorMapa_Statics; \
@@ -49,7 +49,7 @@ public: \
 	DECLARE_SERIALIZER(UConstructorMapa)
 
 
-#define FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_ConstructorMapa_h_77_ENHANCED_CONSTRUCTORS \
+#define FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_ConstructorMapa_h_77_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	UConstructorMapa(UConstructorMapa&&); \
@@ -61,13 +61,13 @@ public: \
 	NO_API virtual ~UConstructorMapa();
 
 
-#define FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_ConstructorMapa_h_74_PROLOG
-#define FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_ConstructorMapa_h_77_GENERATED_BODY \
+#define FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_ConstructorMapa_h_74_PROLOG
+#define FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_ConstructorMapa_h_77_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_ConstructorMapa_h_77_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_ConstructorMapa_h_77_INCLASS_NO_PURE_DECLS \
-	FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_ConstructorMapa_h_77_ENHANCED_CONSTRUCTORS \
+	FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_ConstructorMapa_h_77_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_ConstructorMapa_h_77_INCLASS_NO_PURE_DECLS \
+	FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_ConstructorMapa_h_77_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -75,7 +75,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> FINALBOMBERMAN_API UClass* StaticClass<class UConstructorMapa>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_ConstructorMapa_h
+#define CURRENT_FILE_ID FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_ConstructorMapa_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

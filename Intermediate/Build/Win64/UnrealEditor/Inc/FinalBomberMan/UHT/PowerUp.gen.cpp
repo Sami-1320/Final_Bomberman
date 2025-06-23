@@ -13,6 +13,7 @@ void EmptyLinkFunctionForGeneratedCodePowerUp() {}
 // Begin Cross Module References
 ENGINE_API UClass* Z_Construct_UClass_AActor();
 ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
+ENGINE_API UClass* Z_Construct_UClass_UMaterialInterface_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UPrimitiveComponent_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_USphereComponent_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
@@ -55,8 +56,12 @@ struct Z_Construct_UEnum_FinalBomberMan_ETipoPowerUp_Statics
 		{ "ModuleRelativePath", "PowerUp.h" },
 		{ "RadioExplosion.DisplayName", "Radio Explosi\xc3\xb3n" },
 		{ "RadioExplosion.Name", "ETipoPowerUp::RadioExplosion" },
+		{ "SaltoAlto.DisplayName", "Salto Alto" },
+		{ "SaltoAlto.Name", "ETipoPowerUp::SaltoAlto" },
 		{ "Velocidad.DisplayName", "Velocidad" },
 		{ "Velocidad.Name", "ETipoPowerUp::Velocidad" },
+		{ "VidaExtra.DisplayName", "Vida Extra" },
+		{ "VidaExtra.Name", "ETipoPowerUp::VidaExtra" },
 	};
 #endif // WITH_METADATA
 	static constexpr UECodeGen_Private::FEnumeratorParam Enumerators[] = {
@@ -66,6 +71,8 @@ struct Z_Construct_UEnum_FinalBomberMan_ETipoPowerUp_Statics
 		{ "ETipoPowerUp::Escudo", (int64)ETipoPowerUp::Escudo },
 		{ "ETipoPowerUp::BombaRemota", (int64)ETipoPowerUp::BombaRemota },
 		{ "ETipoPowerUp::Inmortalidad", (int64)ETipoPowerUp::Inmortalidad },
+		{ "ETipoPowerUp::SaltoAlto", (int64)ETipoPowerUp::SaltoAlto },
+		{ "ETipoPowerUp::VidaExtra", (int64)ETipoPowerUp::VidaExtra },
 	};
 	static const UECodeGen_Private::FEnumParams EnumParams;
 };
@@ -248,7 +255,7 @@ struct Z_Construct_UFunction_APowerUp_ObtenerTipo_Statics
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
 const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_APowerUp_ObtenerTipo_Statics::NewProp_ReturnValue_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_APowerUp_ObtenerTipo_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(PowerUp_eventObtenerTipo_Parms, ReturnValue), Z_Construct_UEnum_FinalBomberMan_ETipoPowerUp, METADATA_PARAMS(0, nullptr) }; // 162526442
+const UECodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_APowerUp_ObtenerTipo_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(PowerUp_eventObtenerTipo_Parms, ReturnValue), Z_Construct_UEnum_FinalBomberMan_ETipoPowerUp, METADATA_PARAMS(0, nullptr) }; // 1306924834
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_APowerUp_ObtenerTipo_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_APowerUp_ObtenerTipo_Statics::NewProp_ReturnValue_Underlying,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_APowerUp_ObtenerTipo_Statics::NewProp_ReturnValue,
@@ -499,6 +506,39 @@ struct Z_Construct_UClass_APowerUp_Statics
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "PowerUp.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MaterialBombaExtra_MetaData[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Material references loaded in constructor\n" },
+#endif
+		{ "ModuleRelativePath", "PowerUp.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Material references loaded in constructor" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MaterialRadioExplosion_MetaData[] = {
+		{ "ModuleRelativePath", "PowerUp.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MaterialVelocidad_MetaData[] = {
+		{ "ModuleRelativePath", "PowerUp.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MaterialEscudo_MetaData[] = {
+		{ "ModuleRelativePath", "PowerUp.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MaterialBombaRemota_MetaData[] = {
+		{ "ModuleRelativePath", "PowerUp.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MaterialInmortalidad_MetaData[] = {
+		{ "ModuleRelativePath", "PowerUp.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MaterialSaltoAlto_MetaData[] = {
+		{ "ModuleRelativePath", "PowerUp.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MaterialVidaExtra_MetaData[] = {
+		{ "ModuleRelativePath", "PowerUp.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MaterialDorado_MetaData[] = {
+		{ "ModuleRelativePath", "PowerUp.h" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FBytePropertyParams NewProp_TipoPowerUp_Underlying;
 	static const UECodeGen_Private::FEnumPropertyParams NewProp_TipoPowerUp;
@@ -508,13 +548,22 @@ struct Z_Construct_UClass_APowerUp_Statics
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_EsPermanente;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_MeshComponent;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_CollisionComponent;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_MaterialBombaExtra;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_MaterialRadioExplosion;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_MaterialVelocidad;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_MaterialEscudo;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_MaterialBombaRemota;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_MaterialInmortalidad;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_MaterialSaltoAlto;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_MaterialVidaExtra;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_MaterialDorado;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_APowerUp_AplicarPowerUp, "AplicarPowerUp" }, // 3406095393
 		{ &Z_Construct_UFunction_APowerUp_EsPowerUpPermanente, "EsPowerUpPermanente" }, // 1677776199
 		{ &Z_Construct_UFunction_APowerUp_ObtenerDuracion, "ObtenerDuracion" }, // 991636239
-		{ &Z_Construct_UFunction_APowerUp_ObtenerTipo, "ObtenerTipo" }, // 3469578582
+		{ &Z_Construct_UFunction_APowerUp_ObtenerTipo, "ObtenerTipo" }, // 3799013340
 		{ &Z_Construct_UFunction_APowerUp_ObtenerValor, "ObtenerValor" }, // 3187304613
 		{ &Z_Construct_UFunction_APowerUp_OnOverlapBegin, "OnOverlapBegin" }, // 3152103281
 		{ &Z_Construct_UFunction_APowerUp_RemoverPowerUp, "RemoverPowerUp" }, // 3384594137
@@ -527,7 +576,7 @@ struct Z_Construct_UClass_APowerUp_Statics
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
 const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_APowerUp_Statics::NewProp_TipoPowerUp_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_APowerUp_Statics::NewProp_TipoPowerUp = { "TipoPowerUp", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APowerUp, TipoPowerUp), Z_Construct_UEnum_FinalBomberMan_ETipoPowerUp, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_TipoPowerUp_MetaData), NewProp_TipoPowerUp_MetaData) }; // 162526442
+const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_APowerUp_Statics::NewProp_TipoPowerUp = { "TipoPowerUp", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APowerUp, TipoPowerUp), Z_Construct_UEnum_FinalBomberMan_ETipoPowerUp, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_TipoPowerUp_MetaData), NewProp_TipoPowerUp_MetaData) }; // 1306924834
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_APowerUp_Statics::NewProp_Duracion = { "Duracion", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APowerUp, Duracion), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Duracion_MetaData), NewProp_Duracion_MetaData) };
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_APowerUp_Statics::NewProp_Valor = { "Valor", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APowerUp, Valor), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Valor_MetaData), NewProp_Valor_MetaData) };
 void Z_Construct_UClass_APowerUp_Statics::NewProp_EsPermanente_SetBit(void* Obj)
@@ -537,6 +586,15 @@ void Z_Construct_UClass_APowerUp_Statics::NewProp_EsPermanente_SetBit(void* Obj)
 const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_APowerUp_Statics::NewProp_EsPermanente = { "EsPermanente", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(APowerUp), &Z_Construct_UClass_APowerUp_Statics::NewProp_EsPermanente_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_EsPermanente_MetaData), NewProp_EsPermanente_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_APowerUp_Statics::NewProp_MeshComponent = { "MeshComponent", nullptr, (EPropertyFlags)0x00100000000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APowerUp, MeshComponent), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MeshComponent_MetaData), NewProp_MeshComponent_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_APowerUp_Statics::NewProp_CollisionComponent = { "CollisionComponent", nullptr, (EPropertyFlags)0x00100000000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APowerUp, CollisionComponent), Z_Construct_UClass_USphereComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CollisionComponent_MetaData), NewProp_CollisionComponent_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_APowerUp_Statics::NewProp_MaterialBombaExtra = { "MaterialBombaExtra", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APowerUp, MaterialBombaExtra), Z_Construct_UClass_UMaterialInterface_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaterialBombaExtra_MetaData), NewProp_MaterialBombaExtra_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_APowerUp_Statics::NewProp_MaterialRadioExplosion = { "MaterialRadioExplosion", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APowerUp, MaterialRadioExplosion), Z_Construct_UClass_UMaterialInterface_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaterialRadioExplosion_MetaData), NewProp_MaterialRadioExplosion_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_APowerUp_Statics::NewProp_MaterialVelocidad = { "MaterialVelocidad", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APowerUp, MaterialVelocidad), Z_Construct_UClass_UMaterialInterface_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaterialVelocidad_MetaData), NewProp_MaterialVelocidad_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_APowerUp_Statics::NewProp_MaterialEscudo = { "MaterialEscudo", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APowerUp, MaterialEscudo), Z_Construct_UClass_UMaterialInterface_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaterialEscudo_MetaData), NewProp_MaterialEscudo_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_APowerUp_Statics::NewProp_MaterialBombaRemota = { "MaterialBombaRemota", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APowerUp, MaterialBombaRemota), Z_Construct_UClass_UMaterialInterface_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaterialBombaRemota_MetaData), NewProp_MaterialBombaRemota_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_APowerUp_Statics::NewProp_MaterialInmortalidad = { "MaterialInmortalidad", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APowerUp, MaterialInmortalidad), Z_Construct_UClass_UMaterialInterface_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaterialInmortalidad_MetaData), NewProp_MaterialInmortalidad_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_APowerUp_Statics::NewProp_MaterialSaltoAlto = { "MaterialSaltoAlto", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APowerUp, MaterialSaltoAlto), Z_Construct_UClass_UMaterialInterface_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaterialSaltoAlto_MetaData), NewProp_MaterialSaltoAlto_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_APowerUp_Statics::NewProp_MaterialVidaExtra = { "MaterialVidaExtra", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APowerUp, MaterialVidaExtra), Z_Construct_UClass_UMaterialInterface_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaterialVidaExtra_MetaData), NewProp_MaterialVidaExtra_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_APowerUp_Statics::NewProp_MaterialDorado = { "MaterialDorado", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APowerUp, MaterialDorado), Z_Construct_UClass_UMaterialInterface_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaterialDorado_MetaData), NewProp_MaterialDorado_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_APowerUp_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APowerUp_Statics::NewProp_TipoPowerUp_Underlying,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APowerUp_Statics::NewProp_TipoPowerUp,
@@ -545,6 +603,15 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_APowerUp_
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APowerUp_Statics::NewProp_EsPermanente,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APowerUp_Statics::NewProp_MeshComponent,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APowerUp_Statics::NewProp_CollisionComponent,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APowerUp_Statics::NewProp_MaterialBombaExtra,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APowerUp_Statics::NewProp_MaterialRadioExplosion,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APowerUp_Statics::NewProp_MaterialVelocidad,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APowerUp_Statics::NewProp_MaterialEscudo,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APowerUp_Statics::NewProp_MaterialBombaRemota,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APowerUp_Statics::NewProp_MaterialInmortalidad,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APowerUp_Statics::NewProp_MaterialSaltoAlto,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APowerUp_Statics::NewProp_MaterialVidaExtra,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APowerUp_Statics::NewProp_MaterialDorado,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_APowerUp_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_APowerUp_Statics::DependentSingletons[])() = {
@@ -587,18 +654,18 @@ APowerUp::~APowerUp() {}
 // End Class APowerUp
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_PowerUp_h_Statics
+struct Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_PowerUp_h_Statics
 {
 	static constexpr FEnumRegisterCompiledInInfo EnumInfo[] = {
-		{ ETipoPowerUp_StaticEnum, TEXT("ETipoPowerUp"), &Z_Registration_Info_UEnum_ETipoPowerUp, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 162526442U) },
+		{ ETipoPowerUp_StaticEnum, TEXT("ETipoPowerUp"), &Z_Registration_Info_UEnum_ETipoPowerUp, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1306924834U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_APowerUp, APowerUp::StaticClass, TEXT("APowerUp"), &Z_Registration_Info_UClass_APowerUp, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(APowerUp), 3364439852U) },
+		{ Z_Construct_UClass_APowerUp, APowerUp::StaticClass, TEXT("APowerUp"), &Z_Registration_Info_UClass_APowerUp, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(APowerUp), 1578809635U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_PowerUp_h_848562483(TEXT("/Script/FinalBomberMan"),
-	Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_PowerUp_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_PowerUp_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_PowerUp_h_3494073846(TEXT("/Script/FinalBomberMan"),
+	Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_PowerUp_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_PowerUp_h_Statics::ClassInfo),
 	nullptr, 0,
-	Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_PowerUp_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_PowerUp_h_Statics::EnumInfo));
+	Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_PowerUp_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_PowerUp_h_Statics::EnumInfo));
 // End Registration
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

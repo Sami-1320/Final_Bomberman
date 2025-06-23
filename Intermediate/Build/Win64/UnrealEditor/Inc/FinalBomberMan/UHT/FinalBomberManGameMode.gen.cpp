@@ -11,6 +11,7 @@ void EmptyLinkFunctionForGeneratedCodeFinalBomberManGameMode() {}
 
 // Begin Cross Module References
 COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
+ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_AGameModeBase();
 FINALBOMBERMAN_API UClass* Z_Construct_UClass_AEnemigo_NoRegister();
 FINALBOMBERMAN_API UClass* Z_Construct_UClass_AFinalBomberManGameMode();
@@ -19,8 +20,75 @@ FINALBOMBERMAN_API UClass* Z_Construct_UClass_APowerUp_NoRegister();
 FINALBOMBERMAN_API UClass* Z_Construct_UClass_ATile_NoRegister();
 FINALBOMBERMAN_API UClass* Z_Construct_UClass_UConstructorMapa_NoRegister();
 FINALBOMBERMAN_API UClass* Z_Construct_UClass_UDirectorNiveles_NoRegister();
+FINALBOMBERMAN_API UClass* Z_Construct_UClass_UGameplayFacade_NoRegister();
 UPackage* Z_Construct_UPackage__Script_FinalBomberMan();
 // End Cross Module References
+
+// Begin Class AFinalBomberManGameMode Function ActualizarContadorPuntosGlobal
+struct Z_Construct_UFunction_AFinalBomberManGameMode_ActualizarContadorPuntosGlobal_Statics
+{
+	struct FinalBomberManGameMode_eventActualizarContadorPuntosGlobal_Parms
+	{
+		int32 PuntosActuales;
+		int32 PuntosMaximos;
+		bool bEsEnemigo;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Game Mode" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Funci\xc3\xb3n est\xc3\xa1tica para actualizar puntos desde cualquier lugar\n" },
+#endif
+		{ "CPP_Default_bEsEnemigo", "false" },
+		{ "CPP_Default_PuntosMaximos", "10" },
+		{ "ModuleRelativePath", "FinalBomberManGameMode.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Funci\xc3\xb3n est\xc3\xa1tica para actualizar puntos desde cualquier lugar" },
+#endif
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FIntPropertyParams NewProp_PuntosActuales;
+	static const UECodeGen_Private::FIntPropertyParams NewProp_PuntosMaximos;
+	static void NewProp_bEsEnemigo_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bEsEnemigo;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_AFinalBomberManGameMode_ActualizarContadorPuntosGlobal_Statics::NewProp_PuntosActuales = { "PuntosActuales", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FinalBomberManGameMode_eventActualizarContadorPuntosGlobal_Parms, PuntosActuales), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_AFinalBomberManGameMode_ActualizarContadorPuntosGlobal_Statics::NewProp_PuntosMaximos = { "PuntosMaximos", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FinalBomberManGameMode_eventActualizarContadorPuntosGlobal_Parms, PuntosMaximos), METADATA_PARAMS(0, nullptr) };
+void Z_Construct_UFunction_AFinalBomberManGameMode_ActualizarContadorPuntosGlobal_Statics::NewProp_bEsEnemigo_SetBit(void* Obj)
+{
+	((FinalBomberManGameMode_eventActualizarContadorPuntosGlobal_Parms*)Obj)->bEsEnemigo = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_AFinalBomberManGameMode_ActualizarContadorPuntosGlobal_Statics::NewProp_bEsEnemigo = { "bEsEnemigo", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(FinalBomberManGameMode_eventActualizarContadorPuntosGlobal_Parms), &Z_Construct_UFunction_AFinalBomberManGameMode_ActualizarContadorPuntosGlobal_Statics::NewProp_bEsEnemigo_SetBit, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AFinalBomberManGameMode_ActualizarContadorPuntosGlobal_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AFinalBomberManGameMode_ActualizarContadorPuntosGlobal_Statics::NewProp_PuntosActuales,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AFinalBomberManGameMode_ActualizarContadorPuntosGlobal_Statics::NewProp_PuntosMaximos,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AFinalBomberManGameMode_ActualizarContadorPuntosGlobal_Statics::NewProp_bEsEnemigo,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AFinalBomberManGameMode_ActualizarContadorPuntosGlobal_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AFinalBomberManGameMode_ActualizarContadorPuntosGlobal_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AFinalBomberManGameMode, nullptr, "ActualizarContadorPuntosGlobal", nullptr, nullptr, Z_Construct_UFunction_AFinalBomberManGameMode_ActualizarContadorPuntosGlobal_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AFinalBomberManGameMode_ActualizarContadorPuntosGlobal_Statics::PropPointers), sizeof(Z_Construct_UFunction_AFinalBomberManGameMode_ActualizarContadorPuntosGlobal_Statics::FinalBomberManGameMode_eventActualizarContadorPuntosGlobal_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04022401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AFinalBomberManGameMode_ActualizarContadorPuntosGlobal_Statics::Function_MetaDataParams), Z_Construct_UFunction_AFinalBomberManGameMode_ActualizarContadorPuntosGlobal_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_AFinalBomberManGameMode_ActualizarContadorPuntosGlobal_Statics::FinalBomberManGameMode_eventActualizarContadorPuntosGlobal_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_AFinalBomberManGameMode_ActualizarContadorPuntosGlobal()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AFinalBomberManGameMode_ActualizarContadorPuntosGlobal_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AFinalBomberManGameMode::execActualizarContadorPuntosGlobal)
+{
+	P_GET_PROPERTY(FIntProperty,Z_Param_PuntosActuales);
+	P_GET_PROPERTY(FIntProperty,Z_Param_PuntosMaximos);
+	P_GET_UBOOL(Z_Param_bEsEnemigo);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	AFinalBomberManGameMode::ActualizarContadorPuntosGlobal(Z_Param_PuntosActuales,Z_Param_PuntosMaximos,Z_Param_bEsEnemigo);
+	P_NATIVE_END;
+}
+// End Class AFinalBomberManGameMode Function ActualizarContadorPuntosGlobal
 
 // Begin Class AFinalBomberManGameMode Function CargarNivel
 struct Z_Construct_UFunction_AFinalBomberManGameMode_CargarNivel_Statics
@@ -154,6 +222,54 @@ DEFINE_FUNCTION(AFinalBomberManGameMode::execObtenerAnchoMapa)
 	P_NATIVE_END;
 }
 // End Class AFinalBomberManGameMode Function ObtenerAnchoMapa
+
+// Begin Class AFinalBomberManGameMode Function ObtenerGameplayFacade
+struct Z_Construct_UFunction_AFinalBomberManGameMode_ObtenerGameplayFacade_Statics
+{
+	struct FinalBomberManGameMode_eventObtenerGameplayFacade_Parms
+	{
+		UGameplayFacade* ReturnValue;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Game Mode" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Acceso al GameplayFacade\n" },
+#endif
+		{ "ModuleRelativePath", "FinalBomberManGameMode.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Acceso al GameplayFacade" },
+#endif
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_ReturnValue;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AFinalBomberManGameMode_ObtenerGameplayFacade_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FinalBomberManGameMode_eventObtenerGameplayFacade_Parms, ReturnValue), Z_Construct_UClass_UGameplayFacade_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AFinalBomberManGameMode_ObtenerGameplayFacade_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AFinalBomberManGameMode_ObtenerGameplayFacade_Statics::NewProp_ReturnValue,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AFinalBomberManGameMode_ObtenerGameplayFacade_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AFinalBomberManGameMode_ObtenerGameplayFacade_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AFinalBomberManGameMode, nullptr, "ObtenerGameplayFacade", nullptr, nullptr, Z_Construct_UFunction_AFinalBomberManGameMode_ObtenerGameplayFacade_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AFinalBomberManGameMode_ObtenerGameplayFacade_Statics::PropPointers), sizeof(Z_Construct_UFunction_AFinalBomberManGameMode_ObtenerGameplayFacade_Statics::FinalBomberManGameMode_eventObtenerGameplayFacade_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AFinalBomberManGameMode_ObtenerGameplayFacade_Statics::Function_MetaDataParams), Z_Construct_UFunction_AFinalBomberManGameMode_ObtenerGameplayFacade_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_AFinalBomberManGameMode_ObtenerGameplayFacade_Statics::FinalBomberManGameMode_eventObtenerGameplayFacade_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_AFinalBomberManGameMode_ObtenerGameplayFacade()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AFinalBomberManGameMode_ObtenerGameplayFacade_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AFinalBomberManGameMode::execObtenerGameplayFacade)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	*(UGameplayFacade**)Z_Param__Result=P_THIS->ObtenerGameplayFacade();
+	P_NATIVE_END;
+}
+// End Class AFinalBomberManGameMode Function ObtenerGameplayFacade
 
 // Begin Class AFinalBomberManGameMode Function ObtenerNivelActual
 struct Z_Construct_UFunction_AFinalBomberManGameMode_ObtenerNivelActual_Statics
@@ -315,18 +431,51 @@ DEFINE_FUNCTION(AFinalBomberManGameMode::execSiguienteNivel)
 }
 // End Class AFinalBomberManGameMode Function SiguienteNivel
 
+// Begin Class AFinalBomberManGameMode Function SpawnEnemigosAleatorios
+struct Z_Construct_UFunction_AFinalBomberManGameMode_SpawnEnemigosAleatorios_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Game Mode" },
+		{ "ModuleRelativePath", "FinalBomberManGameMode.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AFinalBomberManGameMode_SpawnEnemigosAleatorios_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AFinalBomberManGameMode, nullptr, "SpawnEnemigosAleatorios", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AFinalBomberManGameMode_SpawnEnemigosAleatorios_Statics::Function_MetaDataParams), Z_Construct_UFunction_AFinalBomberManGameMode_SpawnEnemigosAleatorios_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AFinalBomberManGameMode_SpawnEnemigosAleatorios()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AFinalBomberManGameMode_SpawnEnemigosAleatorios_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AFinalBomberManGameMode::execSpawnEnemigosAleatorios)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->SpawnEnemigosAleatorios();
+	P_NATIVE_END;
+}
+// End Class AFinalBomberManGameMode Function SpawnEnemigosAleatorios
+
 // Begin Class AFinalBomberManGameMode
 void AFinalBomberManGameMode::StaticRegisterNativesAFinalBomberManGameMode()
 {
 	UClass* Class = AFinalBomberManGameMode::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
+		{ "ActualizarContadorPuntosGlobal", &AFinalBomberManGameMode::execActualizarContadorPuntosGlobal },
 		{ "CargarNivel", &AFinalBomberManGameMode::execCargarNivel },
 		{ "ObtenerAltoMapa", &AFinalBomberManGameMode::execObtenerAltoMapa },
 		{ "ObtenerAnchoMapa", &AFinalBomberManGameMode::execObtenerAnchoMapa },
+		{ "ObtenerGameplayFacade", &AFinalBomberManGameMode::execObtenerGameplayFacade },
 		{ "ObtenerNivelActual", &AFinalBomberManGameMode::execObtenerNivelActual },
 		{ "ObtenerTileEn", &AFinalBomberManGameMode::execObtenerTileEn },
 		{ "ReiniciarNivel", &AFinalBomberManGameMode::execReiniciarNivel },
 		{ "SiguienteNivel", &AFinalBomberManGameMode::execSiguienteNivel },
+		{ "SpawnEnemigosAleatorios", &AFinalBomberManGameMode::execSpawnEnemigosAleatorios },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 }
@@ -343,6 +492,16 @@ struct Z_Construct_UClass_AFinalBomberManGameMode_Statics
 		{ "IncludePath", "FinalBomberManGameMode.h" },
 		{ "ModuleRelativePath", "FinalBomberManGameMode.h" },
 		{ "ShowCategories", "Input|MouseInput Input|TouchInput" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_BloqueDestructibleBlueprint_MetaData[] = {
+		{ "Category", "Blueprints" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Referencia al Blueprint del bloque destructible\n" },
+#endif
+		{ "ModuleRelativePath", "FinalBomberManGameMode.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Referencia al Blueprint del bloque destructible" },
+#endif
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PowerUpClass_MetaData[] = {
 		{ "Category", "PowerUps" },
@@ -382,7 +541,11 @@ struct Z_Construct_UClass_AFinalBomberManGameMode_Statics
 		{ "ToolTip", "Cambiar de TArray<TArray<ATile*>> a UConstructorMapa*" },
 #endif
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_GameplayFacade_MetaData[] = {
+		{ "ModuleRelativePath", "FinalBomberManGameMode.h" },
+	};
 #endif // WITH_METADATA
+	static const UECodeGen_Private::FClassPropertyParams NewProp_BloqueDestructibleBlueprint;
 	static const UECodeGen_Private::FClassPropertyParams NewProp_PowerUpClass;
 	static const UECodeGen_Private::FIntPropertyParams NewProp_NumeroDePowerUpsAlInicio;
 	static const UECodeGen_Private::FClassPropertyParams NewProp_EnemigoClass;
@@ -391,16 +554,20 @@ struct Z_Construct_UClass_AFinalBomberManGameMode_Statics
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_DirectorNivelesActual;
 	static const UECodeGen_Private::FIntPropertyParams NewProp_NivelActual;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_MapaActual;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_GameplayFacade;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
+		{ &Z_Construct_UFunction_AFinalBomberManGameMode_ActualizarContadorPuntosGlobal, "ActualizarContadorPuntosGlobal" }, // 1788509324
 		{ &Z_Construct_UFunction_AFinalBomberManGameMode_CargarNivel, "CargarNivel" }, // 3856233953
 		{ &Z_Construct_UFunction_AFinalBomberManGameMode_ObtenerAltoMapa, "ObtenerAltoMapa" }, // 524510399
 		{ &Z_Construct_UFunction_AFinalBomberManGameMode_ObtenerAnchoMapa, "ObtenerAnchoMapa" }, // 1043068457
+		{ &Z_Construct_UFunction_AFinalBomberManGameMode_ObtenerGameplayFacade, "ObtenerGameplayFacade" }, // 1487326845
 		{ &Z_Construct_UFunction_AFinalBomberManGameMode_ObtenerNivelActual, "ObtenerNivelActual" }, // 139676049
 		{ &Z_Construct_UFunction_AFinalBomberManGameMode_ObtenerTileEn, "ObtenerTileEn" }, // 2432518739
 		{ &Z_Construct_UFunction_AFinalBomberManGameMode_ReiniciarNivel, "ReiniciarNivel" }, // 4220081112
 		{ &Z_Construct_UFunction_AFinalBomberManGameMode_SiguienteNivel, "SiguienteNivel" }, // 796757977
+		{ &Z_Construct_UFunction_AFinalBomberManGameMode_SpawnEnemigosAleatorios, "SpawnEnemigosAleatorios" }, // 2770902041
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -408,6 +575,7 @@ struct Z_Construct_UClass_AFinalBomberManGameMode_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
+const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AFinalBomberManGameMode_Statics::NewProp_BloqueDestructibleBlueprint = { "BloqueDestructibleBlueprint", nullptr, (EPropertyFlags)0x0014000000010001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AFinalBomberManGameMode, BloqueDestructibleBlueprint), Z_Construct_UClass_UClass, Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BloqueDestructibleBlueprint_MetaData), NewProp_BloqueDestructibleBlueprint_MetaData) };
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AFinalBomberManGameMode_Statics::NewProp_PowerUpClass = { "PowerUpClass", nullptr, (EPropertyFlags)0x0024080000010001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AFinalBomberManGameMode, PowerUpClass), Z_Construct_UClass_UClass, Z_Construct_UClass_APowerUp_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PowerUpClass_MetaData), NewProp_PowerUpClass_MetaData) };
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_AFinalBomberManGameMode_Statics::NewProp_NumeroDePowerUpsAlInicio = { "NumeroDePowerUpsAlInicio", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AFinalBomberManGameMode, NumeroDePowerUpsAlInicio), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_NumeroDePowerUpsAlInicio_MetaData), NewProp_NumeroDePowerUpsAlInicio_MetaData) };
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AFinalBomberManGameMode_Statics::NewProp_EnemigoClass = { "EnemigoClass", nullptr, (EPropertyFlags)0x0024080000010001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AFinalBomberManGameMode, EnemigoClass), Z_Construct_UClass_UClass, Z_Construct_UClass_AEnemigo_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_EnemigoClass_MetaData), NewProp_EnemigoClass_MetaData) };
@@ -416,7 +584,9 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AFinalBomberMa
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AFinalBomberManGameMode_Statics::NewProp_DirectorNivelesActual = { "DirectorNivelesActual", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AFinalBomberManGameMode, DirectorNivelesActual), Z_Construct_UClass_UDirectorNiveles_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DirectorNivelesActual_MetaData), NewProp_DirectorNivelesActual_MetaData) };
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_AFinalBomberManGameMode_Statics::NewProp_NivelActual = { "NivelActual", nullptr, (EPropertyFlags)0x0040000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AFinalBomberManGameMode, NivelActual), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_NivelActual_MetaData), NewProp_NivelActual_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AFinalBomberManGameMode_Statics::NewProp_MapaActual = { "MapaActual", nullptr, (EPropertyFlags)0x0040000000020015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AFinalBomberManGameMode, MapaActual), Z_Construct_UClass_UConstructorMapa_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MapaActual_MetaData), NewProp_MapaActual_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AFinalBomberManGameMode_Statics::NewProp_GameplayFacade = { "GameplayFacade", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AFinalBomberManGameMode, GameplayFacade), Z_Construct_UClass_UGameplayFacade_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_GameplayFacade_MetaData), NewProp_GameplayFacade_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AFinalBomberManGameMode_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFinalBomberManGameMode_Statics::NewProp_BloqueDestructibleBlueprint,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFinalBomberManGameMode_Statics::NewProp_PowerUpClass,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFinalBomberManGameMode_Statics::NewProp_NumeroDePowerUpsAlInicio,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFinalBomberManGameMode_Statics::NewProp_EnemigoClass,
@@ -425,6 +595,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AFinalBom
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFinalBomberManGameMode_Statics::NewProp_DirectorNivelesActual,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFinalBomberManGameMode_Statics::NewProp_NivelActual,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFinalBomberManGameMode_Statics::NewProp_MapaActual,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFinalBomberManGameMode_Statics::NewProp_GameplayFacade,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AFinalBomberManGameMode_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AFinalBomberManGameMode_Statics::DependentSingletons[])() = {
@@ -464,14 +635,14 @@ AFinalBomberManGameMode::~AFinalBomberManGameMode() {}
 // End Class AFinalBomberManGameMode
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_FinalBomberManGameMode_h_Statics
+struct Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_FinalBomberManGameMode_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AFinalBomberManGameMode, AFinalBomberManGameMode::StaticClass, TEXT("AFinalBomberManGameMode"), &Z_Registration_Info_UClass_AFinalBomberManGameMode, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AFinalBomberManGameMode), 2400662154U) },
+		{ Z_Construct_UClass_AFinalBomberManGameMode, AFinalBomberManGameMode::StaticClass, TEXT("AFinalBomberManGameMode"), &Z_Registration_Info_UClass_AFinalBomberManGameMode, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AFinalBomberManGameMode), 1417481638U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_FinalBomberManGameMode_h_1783815256(TEXT("/Script/FinalBomberMan"),
-	Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_FinalBomberManGameMode_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_FinalBomberManGameMode_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_FinalBomberManGameMode_h_167189273(TEXT("/Script/FinalBomberMan"),
+	Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_FinalBomberManGameMode_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_FinalBomberManGameMode_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

@@ -2,6 +2,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
+#include "GameplayFacade.h"
 #include "FinalBomberManGameMode.generated.h"
 
 class UConstructorMapa;
@@ -9,6 +10,7 @@ class UDirectorNiveles;
 class ATile;
 class APowerUp;
 class AEnemigo;
+class UGameplayFacade;
 
 UCLASS(minimalapi)
 class AFinalBomberManGameMode : public AGameModeBase
@@ -17,6 +19,10 @@ class AFinalBomberManGameMode : public AGameModeBase
 
 public:
     AFinalBomberManGameMode();
+
+    // Referencia al Blueprint del bloque destructible
+    UPROPERTY(EditDefaultsOnly, Category = "Blueprints")
+    TSubclassOf<AActor> BloqueDestructibleBlueprint;
 
 protected:
     virtual void BeginPlay() override;
@@ -47,6 +53,9 @@ private:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Nivel", meta = (AllowPrivateAccess = "true"))
     UConstructorMapa* MapaActual;
 
+    UPROPERTY()
+    UGameplayFacade* GameplayFacade;
+
 public:
     UFUNCTION(BlueprintCallable, Category = "Nivel")
     void CargarNivel(int32 NumeroNivel);
@@ -73,7 +82,18 @@ public:
 
     void SpawnPowerUpsAleatorios();
 
+    UFUNCTION(BlueprintCallable, Category = "Game Mode")
     void SpawnEnemigosAleatorios();
+
+    void SpawnPowerUpsEspecificos();
+
+    // Función estática para actualizar puntos desde cualquier lugar
+    UFUNCTION(BlueprintCallable, Category = "Game Mode")
+    static void ActualizarContadorPuntosGlobal(int32 PuntosActuales, int32 PuntosMaximos = 10, bool bEsEnemigo = false);
+
+    // Acceso al GameplayFacade
+    UFUNCTION(BlueprintCallable, Category = "Game Mode")
+    UGameplayFacade* ObtenerGameplayFacade() const { return GameplayFacade; }
 
 private:
     void LimpiarMapaActual();

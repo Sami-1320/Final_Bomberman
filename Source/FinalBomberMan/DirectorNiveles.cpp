@@ -5,6 +5,7 @@
 #include "BloqueMadera.h"
 #include "BloqueLadrillo.h"
 #include "Engine/World.h"
+#include "FinalBomberManGameMode.h"
 
 UDirectorNiveles::UDirectorNiveles()
 {
@@ -19,7 +20,7 @@ UConstructorMapa* UDirectorNiveles::CrearNivel1(UWorld* Mundo)
 {
     if (!Mundo)
     {
-        UE_LOG(LogTemp, Error, TEXT("DirectorNiveles: Mundo no v�lido"));
+        UE_LOG(LogTemp, Error, TEXT("DirectorNiveles: Mundo no vlido"));
         return nullptr;
     }
 
@@ -39,8 +40,8 @@ UConstructorMapa* UDirectorNiveles::CrearNivel1(UWorld* Mundo)
         ->EstablecerTamano(17, 15)
         ->EstablecerTamanoTile(200.0f)
         ->ColocarBordesIndestructibles()
-        ->ColocarPatronColumnas()
         ->ColocarSpawnJugador(FVector2D(1, 1))
+        ->ColocarPatronColumnas()
         ->ColocarSpawnsEnemigos(SpawnsEnemigos)
         ->ColocarSalidaNivel(FVector2D(17, 15))
         ->LlenarConBloquesDestructibles(60.0f, ABloqueMadera::StaticClass())
@@ -57,7 +58,7 @@ UConstructorMapa* UDirectorNiveles::CrearNivel2(UWorld* Mundo)
 {
     if (!Mundo)
     {
-        UE_LOG(LogTemp, Error, TEXT("DirectorNiveles: Mundo no v�lido"));
+        UE_LOG(LogTemp, Error, TEXT("DirectorNiveles: Mundo no vlido"));
         return nullptr;
     }
 
@@ -65,7 +66,7 @@ UConstructorMapa* UDirectorNiveles::CrearNivel2(UWorld* Mundo)
     if (!Constructor)
         return nullptr;
 
-    // Configurar Nivel 2 - Bloques de Ladrillo destructibles (m�s dif�cil)
+    // Configurar Nivel 2 - Bloques de Ladrillo destructibles (ms difcil)
     TArray<FVector2D> SpawnsEnemigos = {
         FVector2D(11, 1),
         FVector2D(1, 9),
@@ -79,8 +80,8 @@ UConstructorMapa* UDirectorNiveles::CrearNivel2(UWorld* Mundo)
         ->EstablecerTamano(13, 11)
         ->EstablecerTamanoTile(200.0f)
         ->ColocarBordesIndestructibles()
-        ->ColocarPatronColumnas()
         ->ColocarSpawnJugador(FVector2D(1, 1))
+        ->ColocarPatronColumnas()
         ->ColocarSpawnsEnemigos(SpawnsEnemigos)
         ->ColocarSalidaNivel(FVector2D(11, 9))
         ->LlenarConBloquesDestructibles(70.0f, ABloqueLadrillo::StaticClass())
@@ -95,6 +96,16 @@ UConstructorMapa* UDirectorNiveles::CrearNivel2(UWorld* Mundo)
 
 void UDirectorNiveles::ColocarBloquesDestructiblesNivel1(UConstructorMapa* Constructor, UWorld* Mundo)
 {
+    if (!Constructor || !Mundo)
+    {
+        UE_LOG(LogTemp, Error, TEXT("DirectorNiveles: Constructor o Mundo no válidos"));
+        return;
+    }
+
+    UE_LOG(LogTemp, Warning, TEXT("DirectorNiveles: Iniciando colocación de bloques de madera destructibles"));
+
+    int32 BloquesColocados = 0;
+
     for (int32 Y = 0; Y < Constructor->ObtenerAlto(); Y++)
     {
         for (int32 X = 0; X < Constructor->ObtenerAncho(); X++)
@@ -102,11 +113,11 @@ void UDirectorNiveles::ColocarBloquesDestructiblesNivel1(UConstructorMapa* Const
             ATile* TileActual = Constructor->ObtenerTileEn(X, Y);
             if (TileActual && TileActual->ObtenerTipoTile() == ETipoTile::BloqueDestructible)
             {
-                // POSICI�N AL RAS
                 FVector PosicionTile = TileActual->GetActorLocation();
-                FVector PosicionBloque = PosicionTile + FVector(0, 0, 20); // Al ras
+                FVector PosicionBloque = PosicionTile + FVector(0, 0, 20);
 
-                ABloqueMadera* BloqueNuevo = Mundo->SpawnActor<ABloqueMadera>(
+                // Usar directamente la clase C++ de BloqueMadera
+                AActor* BloqueNuevo = Mundo->SpawnActor<AActor>(
                     ABloqueMadera::StaticClass(),
                     PosicionBloque,
                     FRotator::ZeroRotator
@@ -116,14 +127,32 @@ void UDirectorNiveles::ColocarBloquesDestructiblesNivel1(UConstructorMapa* Const
                 {
                     BloqueNuevo->SetActorScale3D(FVector(2.0f, 2.0f, 2.0f));
                     TileActual->ColocarBloque(BloqueNuevo);
+                    BloquesColocados++;
+                    UE_LOG(LogTemp, Log, TEXT("Bloque de madera colocado en (%d, %d)"), X, Y);
+                }
+                else
+                {
+                    UE_LOG(LogTemp, Error, TEXT("ERROR: No se pudo crear bloque de madera en (%d, %d)"), X, Y);
                 }
             }
         }
     }
+
+    UE_LOG(LogTemp, Warning, TEXT("DirectorNiveles: Bloques de madera colocados: %d"), BloquesColocados);
 }
 
 void UDirectorNiveles::ColocarBloquesDestructiblesNivel2(UConstructorMapa* Constructor, UWorld* Mundo)
 {
+    if (!Constructor || !Mundo)
+    {
+        UE_LOG(LogTemp, Error, TEXT("DirectorNiveles: Constructor o Mundo no válidos"));
+        return;
+    }
+
+    UE_LOG(LogTemp, Warning, TEXT("DirectorNiveles: Iniciando colocación de bloques de ladrillo destructibles"));
+
+    int32 BloquesColocados = 0;
+
     for (int32 Y = 0; Y < Constructor->ObtenerAlto(); Y++)
     {
         for (int32 X = 0; X < Constructor->ObtenerAncho(); X++)
@@ -131,11 +160,11 @@ void UDirectorNiveles::ColocarBloquesDestructiblesNivel2(UConstructorMapa* Const
             ATile* TileActual = Constructor->ObtenerTileEn(X, Y);
             if (TileActual && TileActual->ObtenerTipoTile() == ETipoTile::BloqueDestructible)
             {
-                // POSICI�N AL RAS
                 FVector PosicionTile = TileActual->GetActorLocation();
-                FVector PosicionBloque = PosicionTile + FVector(0, 0, 20); // Al ras
+                FVector PosicionBloque = PosicionTile + FVector(0, 0, 20);
 
-                ABloqueLadrillo* BloqueNuevo = Mundo->SpawnActor<ABloqueLadrillo>(
+                // Usar directamente la clase C++ de BloqueLadrillo
+                AActor* BloqueNuevo = Mundo->SpawnActor<AActor>(
                     ABloqueLadrillo::StaticClass(),
                     PosicionBloque,
                     FRotator::ZeroRotator
@@ -145,8 +174,16 @@ void UDirectorNiveles::ColocarBloquesDestructiblesNivel2(UConstructorMapa* Const
                 {
                     BloqueNuevo->SetActorScale3D(FVector(2.0f, 2.0f, 2.0f));
                     TileActual->ColocarBloque(BloqueNuevo);
+                    BloquesColocados++;
+                    UE_LOG(LogTemp, Log, TEXT("Bloque de ladrillo colocado en (%d, %d)"), X, Y);
+                }
+                else
+                {
+                    UE_LOG(LogTemp, Error, TEXT("ERROR: No se pudo crear bloque de ladrillo en (%d, %d)"), X, Y);
                 }
             }
         }
     }
+
+    UE_LOG(LogTemp, Warning, TEXT("DirectorNiveles: Bloques de ladrillo colocados: %d"), BloquesColocados);
 }

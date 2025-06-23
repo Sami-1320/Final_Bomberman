@@ -139,6 +139,12 @@ void AEnemigo::Morir()
     bEstaVivo = false;
     UE_LOG(LogTemp, Warning, TEXT("Enemigo: Muerto"));
 
+    // Mostrar mensaje en pantalla
+    if (GEngine)
+    {
+        GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, TEXT("ENEMIGO DESTRUIDO"));
+    }
+
     // Si es explosivo, crear explosión
     if (EsExplosivo)
     {
@@ -173,16 +179,10 @@ void AEnemigo::AtacarJugador(AFinalBomberManCharacter* Jugador)
     float TiempoActual = GetWorld()->GetTimeSeconds();
     if (TiempoActual - TiempoUltimoAtaque >= CooldownAtaque)
     {
-        // Aplicar daño al jugador
-        // Aquí se implementaría la lógica de daño real
-        UE_LOG(LogTemp, Warning, TEXT("Enemigo: Atacando al jugador con %d de daño"), Dano);
+        // Quitar vida al jugador
+        Jugador->PerderVida();
         
-        // Mostrar mensaje de daño
-        FString MensajeDano = FString::Printf(TEXT("¡Daño recibido: %d!"), Dano);
-        if (GEngine)
-        {
-            GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Orange, MensajeDano);
-        }
+        UE_LOG(LogTemp, Warning, TEXT("Enemigo: Atacando al jugador - Vida restante: %d"), Jugador->GetVidasJugador());
         
         TiempoUltimoAtaque = TiempoActual;
     }
@@ -206,6 +206,15 @@ ETipoEnemigo AEnemigo::ObtenerTipo() const
 int32 AEnemigo::ObtenerPuntuacion() const
 {
     return Puntuacion;
+}
+
+float AEnemigo::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser)
+{
+    // Llamar a la función de recibir daño existente
+    RecibirDano(DamageAmount);
+    
+    // Retornar el daño aplicado
+    return DamageAmount;
 }
 
 void AEnemigo::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)

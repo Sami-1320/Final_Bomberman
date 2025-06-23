@@ -22,7 +22,7 @@ ATile::ATile()
     }
 
     // CARGAR MATERIALES EN EL CONSTRUCTOR
-    static ConstructorHelpers::FObjectFinder<UMaterial> FloorMaterialAsset(TEXT("/Game/StarterContent/Materials/M_Basic_Floor"));
+    static ConstructorHelpers::FObjectFinder<UMaterial> FloorMaterialAsset(TEXT("/Script/Engine.Material'/Game/Pack_Bonus/Materials/M_Pack_Bonus_Grass_3.M_Pack_Bonus_Grass_3'"));
     if (FloorMaterialAsset.Succeeded())
     {
         MaterialPiso = FloorMaterialAsset.Object;

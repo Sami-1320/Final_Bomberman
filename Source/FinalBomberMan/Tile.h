@@ -10,7 +10,7 @@
 class UStaticMeshComponent;
 class UMaterial;
 
-// QUITAR LA DEFINICI�N DE ETipoTile - YA NO EST� AQU�
+// QUITAR LA DEFINICIÓN DE ETipoTile - YA NO ESTÁ AQUÍ
 
 UCLASS()
 class FINALBOMBERMAN_API ATile : public AActor, public IITileInterfaz
@@ -44,7 +44,7 @@ public:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Tile")
     AActor* BloqueColocado;
 
-    // Implementaci�n de ITileInterfaz
+    // Implementación de ITileInterfaz
     virtual void EstablecerTipoTile(ETipoTile NuevoTipo) override;
     virtual void EstablecerPosicionGrid(FVector2D NuevaPosicion) override;
     virtual void ColocarBloque(AActor* Bloque) override;

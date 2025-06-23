@@ -51,6 +51,9 @@ public:
     UFUNCTION(BlueprintCallable, Category = "Gameplay Facade")
     void ReiniciarNivel();
 
+    UFUNCTION(BlueprintCallable, Category = "Gameplay Facade")
+    void CambiarNivelPorPuntos();
+
     // Gestión de bombas
     UFUNCTION(BlueprintCallable, Category = "Gameplay Facade")
     ABomba* ColocarBomba(FVector2D Posicion, int32 RadioExplosion = 1);
@@ -123,6 +126,10 @@ public:
 
     UFUNCTION(BlueprintCallable, Category = "Gameplay Facade")
     bool EstaJuegoTerminado() const;
+
+    // Acceso a sistemas internos
+    UFUNCTION(BlueprintCallable, Category = "Gameplay Facade")
+    UGameEventManager* ObtenerGameEventManager() const { return GameEventManager; }
 
 private:
     UPROPERTY()

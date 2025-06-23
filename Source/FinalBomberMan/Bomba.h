@@ -44,6 +44,13 @@ public:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
     class UStaticMeshComponent* MeshComponent;
 
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+    class UParticleSystemComponent* ExplosionEffectComponent;
+
+    // Referencia al sistema de partículas de explosión
+    UPROPERTY()
+    class UParticleSystem* ExplosionParticleSystem;
+
     // Implementación de IIPrototype
     virtual UObject* Clone() override;
 
@@ -83,4 +90,6 @@ private:
     void DestruirBloque(AActor* Bloque);
     bool EsBloqueDestructible(AActor* Actor);
     bool EsBloqueIndestructible(AActor* Actor);
+    bool EsEnemigo(AActor* Actor);
+    void ReproducirEfectoExplosion();
 }; 

@@ -3610,6 +3610,14 @@
 			"Type": "RequiredResource"
 		},
 		{
+			"Path": "$(EngineDir)/Plugins/Experimental/FieldSystemPlugin/Binaries/Win64/UnrealEditor-FieldSystemEditor.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Experimental/FieldSystemPlugin/Binaries/Win64/UnrealEditor.modules",
+			"Type": "RequiredResource"
+		},
+		{
 			"Path": "$(EngineDir)/Plugins/Experimental/Fracture/Binaries/Win64/UnrealEditor-FractureEngine.dll",
 			"Type": "DynamicLibrary"
 		},
@@ -30116,6 +30124,10 @@
 			"Type": "UFS"
 		},
 		{
+			"Path": "$(EngineDir)/Plugins/Experimental/ChaosClothEditor/ChaosClothEditor.uplugin",
+			"Type": "UFS"
+		},
+		{
 			"Path": "$(EngineDir)/Plugins/Experimental/ChaosEditor/ChaosEditor.uplugin",
 			"Type": "UFS"
 		},
@@ -30157,6 +30169,10 @@
 		},
 		{
 			"Path": "$(EngineDir)/Plugins/Experimental/EditorTelemetry/EditorTelemetry.uplugin",
+			"Type": "UFS"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Experimental/FieldSystemPlugin/FieldSystemPlugin.uplugin",
 			"Type": "UFS"
 		},
 		{
@@ -30584,6 +30600,7 @@
 		"ChangelistReview",
 		"ChaosCaching",
 		"ChaosCloth",
+		"ChaosClothEditor",
 		"ChaosEditor",
 		"ChaosNiagara",
 		"ChaosSolverPlugin",
@@ -30626,6 +30643,7 @@
 		"Fab",
 		"FacialAnimation",
 		"FastBuildController",
+		"FieldSystemPlugin",
 		"Fracture",
 		"FullBodyIK",
 		"GLTFExporter",

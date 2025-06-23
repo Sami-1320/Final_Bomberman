@@ -10,6 +10,8 @@
 #include "Enemigo.h"
 #include "FinalBomberManCharacter.h"
 #include "Engine/World.h"
+#include "FinalBomberManGameMode.h"
+#include "Kismet/GameplayStatics.h"
 
 UGameplayFacade::UGameplayFacade()
 {
@@ -124,6 +126,65 @@ void UGameplayFacade::ReiniciarNivel()
     UE_LOG(LogTemp, Log, TEXT("GameplayFacade: Nivel %d reiniciado"), NivelActual);
 }
 
+void UGameplayFacade::CambiarNivelPorPuntos()
+{
+    UE_LOG(LogTemp, Warning, TEXT("GameplayFacade CambiarNivelPorPuntos: INICIANDO"));
+    
+    if (!MundoActual)
+    {
+        UE_LOG(LogTemp, Error, TEXT("GameplayFacade CambiarNivelPorPuntos: ERROR - MundoActual es NULL"));
+        return;
+    }
+    
+    // Obtener el GameMode
+    AFinalBomberManGameMode* GameMode = Cast<AFinalBomberManGameMode>(MundoActual->GetAuthGameMode());
+    if (!GameMode)
+    {
+        UE_LOG(LogTemp, Error, TEXT("GameplayFacade CambiarNivelPorPuntos: ERROR - No se pudo obtener GameMode"));
+        return;
+    }
+    
+    UE_LOG(LogTemp, Warning, TEXT("GameplayFacade CambiarNivelPorPuntos: GameMode obtenido, procediendo con cambio de nivel"));
+    
+    // Obtener el jugador para reiniciar sus estadísticas
+    APawn* Jugador = UGameplayStatics::GetPlayerPawn(MundoActual, 0);
+    AFinalBomberManCharacter* Character = Cast<AFinalBomberManCharacter>(Jugador);
+    
+    if (Character)
+    {
+        // Reiniciar estadísticas del jugador
+        Character->SetVidasJugador(5); // Reiniciar a 5 vidas
+        Character->SetBombCount(20); // Reiniciar bombas a 20
+        
+        // Desactivar power up de salto
+        Character->bTienePowerUpSalto = false;
+        Character->SaltosDisponibles = 0;
+        
+        UE_LOG(LogTemp, Warning, TEXT("GameplayFacade: Estadísticas del jugador reiniciadas"));
+    }
+    
+    // Reiniciar puntos en UIManager
+    if (UIManager)
+    {
+        UIManager->ReiniciarPuntos();
+        UE_LOG(LogTemp, Warning, TEXT("GameplayFacade: Puntos reiniciados en UIManager"));
+    }
+    
+    // Cambiar al nivel 2
+    UE_LOG(LogTemp, Warning, TEXT("GameplayFacade CambiarNivelPorPuntos: Llamando a GameMode->CargarNivel(2)"));
+    GameMode->CargarNivel(2);
+    UE_LOG(LogTemp, Warning, TEXT("GameplayFacade CambiarNivelPorPuntos: CargarNivel(2) completado"));
+    
+    // Activar power up de salto en el nuevo nivel
+    if (Character)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("GameplayFacade CambiarNivelPorPuntos: Activando power up de salto"));
+        Character->ActivarPowerUpSalto();
+    }
+    
+    UE_LOG(LogTemp, Warning, TEXT("GameplayFacade: Nivel 2 cargado exitosamente con estadísticas reiniciadas"));
+}
+
 ABomba* UGameplayFacade::ColocarBomba(FVector2D Posicion, int32 RadioExplosion)
 {
     if (!MundoActual)
@@ -203,6 +264,7 @@ void UGameplayFacade::RemoverPowerUp(AFinalBomberManCharacter* Jugador, ETipoPow
         return;
     }
 
+    // Aquí se implementaría la lógica para remover power-ups
     UE_LOG(LogTemp, Log, TEXT("GameplayFacade: Power-up removido del jugador"));
 }
 
@@ -218,7 +280,7 @@ AEnemigo* UGameplayFacade::SpawnearEnemigo(ETipoEnemigo Tipo, FVector2D Posicion
     {
         NuevoEnemigo->TipoEnemigo = Tipo;
         EnemigosActivos.Add(NuevoEnemigo);
-        UE_LOG(LogTemp, Log, TEXT("GameplayFacade: Enemigo spawnado en (%f, %f)"), Posicion.X, Posicion.Y);
+        UE_LOG(LogTemp, Log, TEXT("GameplayFacade: Enemigo spawneado en (%f, %f)"), Posicion.X, Posicion.Y);
     }
 
     return NuevoEnemigo;
@@ -228,8 +290,9 @@ void UGameplayFacade::EliminarEnemigo(AEnemigo* Enemigo)
 {
     if (Enemigo)
     {
-        Enemigo->RecibirDano(Enemigo->Vida); // Matar instantáneamente
         EnemigosActivos.Remove(Enemigo);
+        Enemigo->Destroy();
+        UE_LOG(LogTemp, Log, TEXT("GameplayFacade: Enemigo eliminado"));
     }
 }
 
@@ -350,24 +413,54 @@ bool UGameplayFacade::EstaJuegoTerminado() const
 
 void UGameplayFacade::ConfigurarSistemas()
 {
+    UE_LOG(LogTemp, Warning, TEXT("GameplayFacade ConfigurarSistemas: INICIANDO"));
+    
     // Crear y configurar sistemas
     DirectorNiveles = NewObject<UDirectorNiveles>();
+    UE_LOG(LogTemp, Warning, TEXT("GameplayFacade ConfigurarSistemas: DirectorNiveles creado"));
     
     GameEventManager = NewObject<UGameEventManager>();
+    UE_LOG(LogTemp, Warning, TEXT("GameplayFacade ConfigurarSistemas: GameEventManager creado"));
     
     VFXManager = NewObject<UVFXManager>();
     if (GameEventManager && VFXManager)
     {
         GameEventManager->AgregarObserver(VFXManager);
+        UE_LOG(LogTemp, Warning, TEXT("GameplayFacade ConfigurarSistemas: VFXManager registrado como observer"));
     }
     
     UIManager = NewObject<UUIManager>();
+    UE_LOG(LogTemp, Warning, TEXT("GameplayFacade ConfigurarSistemas: UIManager creado: %s"), UIManager ? TEXT("VÁLIDO") : TEXT("NULL"));
+    
     if (GameEventManager && UIManager)
     {
         GameEventManager->AgregarObserver(UIManager);
+        UE_LOG(LogTemp, Warning, TEXT("GameplayFacade ConfigurarSistemas: UIManager registrado como observer"));
+        
+        // Establecer la referencia al GameplayFacade en UIManager
+        UIManager->EstablecerGameplayFacade(this);
+        UE_LOG(LogTemp, Warning, TEXT("GameplayFacade ConfigurarSistemas: Referencia al GameplayFacade establecida en UIManager"));
+        
+        // Inicializar el UIManager después de un pequeño delay
+        if (GetWorld())
+        {
+            FTimerHandle TimerHandle;
+            GetWorld()->GetTimerManager().SetTimer(TimerHandle, [this]()
+            {
+                if (UIManager)
+                {
+                    UIManager->InicializarUIManager();
+                    UE_LOG(LogTemp, Warning, TEXT("GameplayFacade ConfigurarSistemas: UIManager inicializado"));
+                }
+            }, 0.5f, false);
+        }
+    }
+    else
+    {
+        UE_LOG(LogTemp, Error, TEXT("GameplayFacade ConfigurarSistemas: ERROR - No se pudo registrar UIManager como observer"));
     }
 
-    UE_LOG(LogTemp, Log, TEXT("GameplayFacade: Sistemas configurados"));
+    UE_LOG(LogTemp, Warning, TEXT("GameplayFacade ConfigurarSistemas: Sistemas configurados completado"));
 }
 
 void UGameplayFacade::LimpiarNivel()

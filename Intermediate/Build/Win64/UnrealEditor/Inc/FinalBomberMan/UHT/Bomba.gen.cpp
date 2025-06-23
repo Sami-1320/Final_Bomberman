@@ -11,6 +11,8 @@ void EmptyLinkFunctionForGeneratedCodeBomba() {}
 
 // Begin Cross Module References
 ENGINE_API UClass* Z_Construct_UClass_AActor();
+ENGINE_API UClass* Z_Construct_UClass_UParticleSystem_NoRegister();
+ENGINE_API UClass* Z_Construct_UClass_UParticleSystemComponent_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UWorld_NoRegister();
 FINALBOMBERMAN_API UClass* Z_Construct_UClass_ABomba();
@@ -322,6 +324,20 @@ struct Z_Construct_UClass_ABomba_Statics
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Bomba.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ExplosionEffectComponent_MetaData[] = {
+		{ "Category", "Components" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Bomba.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ExplosionParticleSystem_MetaData[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Referencia al sistema de part\xc3\xad""culas de explosi\xc3\xb3n\n" },
+#endif
+		{ "ModuleRelativePath", "Bomba.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Referencia al sistema de part\xc3\xad""culas de explosi\xc3\xb3n" },
+#endif
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MundoActual_MetaData[] = {
 		{ "ModuleRelativePath", "Bomba.h" },
 	};
@@ -337,6 +353,8 @@ struct Z_Construct_UClass_ABomba_Statics
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_EsRemota;
 	static const UECodeGen_Private::FIntPropertyParams NewProp_Dano;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_MeshComponent;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_ExplosionEffectComponent;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_ExplosionParticleSystem;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_MundoActual;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_PowerUpSpawner;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
@@ -366,6 +384,8 @@ void Z_Construct_UClass_ABomba_Statics::NewProp_EsRemota_SetBit(void* Obj)
 const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ABomba_Statics::NewProp_EsRemota = { "EsRemota", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(ABomba), &Z_Construct_UClass_ABomba_Statics::NewProp_EsRemota_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_EsRemota_MetaData), NewProp_EsRemota_MetaData) };
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_ABomba_Statics::NewProp_Dano = { "Dano", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ABomba, Dano), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Dano_MetaData), NewProp_Dano_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ABomba_Statics::NewProp_MeshComponent = { "MeshComponent", nullptr, (EPropertyFlags)0x00100000000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ABomba, MeshComponent), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MeshComponent_MetaData), NewProp_MeshComponent_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ABomba_Statics::NewProp_ExplosionEffectComponent = { "ExplosionEffectComponent", nullptr, (EPropertyFlags)0x00100000000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ABomba, ExplosionEffectComponent), Z_Construct_UClass_UParticleSystemComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ExplosionEffectComponent_MetaData), NewProp_ExplosionEffectComponent_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ABomba_Statics::NewProp_ExplosionParticleSystem = { "ExplosionParticleSystem", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ABomba, ExplosionParticleSystem), Z_Construct_UClass_UParticleSystem_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ExplosionParticleSystem_MetaData), NewProp_ExplosionParticleSystem_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ABomba_Statics::NewProp_MundoActual = { "MundoActual", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ABomba, MundoActual), Z_Construct_UClass_UWorld_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MundoActual_MetaData), NewProp_MundoActual_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ABomba_Statics::NewProp_PowerUpSpawner = { "PowerUpSpawner", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ABomba, PowerUpSpawner), Z_Construct_UClass_APowerUpSpawner_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PowerUpSpawner_MetaData), NewProp_PowerUpSpawner_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ABomba_Statics::PropPointers[] = {
@@ -376,6 +396,8 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ABomba_St
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABomba_Statics::NewProp_EsRemota,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABomba_Statics::NewProp_Dano,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABomba_Statics::NewProp_MeshComponent,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABomba_Statics::NewProp_ExplosionEffectComponent,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABomba_Statics::NewProp_ExplosionParticleSystem,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABomba_Statics::NewProp_MundoActual,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABomba_Statics::NewProp_PowerUpSpawner,
 };
@@ -420,18 +442,18 @@ ABomba::~ABomba() {}
 // End Class ABomba
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_Bomba_h_Statics
+struct Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_Bomba_h_Statics
 {
 	static constexpr FEnumRegisterCompiledInInfo EnumInfo[] = {
 		{ ETipoBomba_StaticEnum, TEXT("ETipoBomba"), &Z_Registration_Info_UEnum_ETipoBomba, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 184315029U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ABomba, ABomba::StaticClass, TEXT("ABomba"), &Z_Registration_Info_UClass_ABomba, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ABomba), 1165547105U) },
+		{ Z_Construct_UClass_ABomba, ABomba::StaticClass, TEXT("ABomba"), &Z_Registration_Info_UClass_ABomba, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ABomba), 1171610396U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_Bomba_h_1965217761(TEXT("/Script/FinalBomberMan"),
-	Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_Bomba_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_Bomba_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_Bomba_h_17971103(TEXT("/Script/FinalBomberMan"),
+	Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_Bomba_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_Bomba_h_Statics::ClassInfo),
 	nullptr, 0,
-	Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_Bomba_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_Bomba_h_Statics::EnumInfo));
+	Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_Bomba_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_Bomba_h_Statics::EnumInfo));
 // End Registration
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

@@ -11,6 +11,7 @@ void EmptyLinkFunctionForGeneratedCodeUIManager() {}
 
 // Begin Cross Module References
 COREUOBJECT_API UClass* Z_Construct_UClass_UObject();
+FINALBOMBERMAN_API UClass* Z_Construct_UClass_UGameplayFacade_NoRegister();
 FINALBOMBERMAN_API UClass* Z_Construct_UClass_UIGameObserver_NoRegister();
 FINALBOMBERMAN_API UClass* Z_Construct_UClass_UUIManager();
 FINALBOMBERMAN_API UClass* Z_Construct_UClass_UUIManager_NoRegister();
@@ -200,6 +201,181 @@ DEFINE_FUNCTION(UUIManager::execActualizarVidaJugador)
 }
 // End Class UUIManager Function ActualizarVidaJugador
 
+// Begin Class UUIManager Function AgregarPuntoPorBloque
+struct Z_Construct_UFunction_UUIManager_AgregarPuntoPorBloque_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "UI" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// M\xc3\xa9todos para el sistema de puntos\n" },
+#endif
+		{ "ModuleRelativePath", "UIManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "M\xc3\xa9todos para el sistema de puntos" },
+#endif
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UUIManager_AgregarPuntoPorBloque_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UUIManager, nullptr, "AgregarPuntoPorBloque", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UUIManager_AgregarPuntoPorBloque_Statics::Function_MetaDataParams), Z_Construct_UFunction_UUIManager_AgregarPuntoPorBloque_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_UUIManager_AgregarPuntoPorBloque()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UUIManager_AgregarPuntoPorBloque_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UUIManager::execAgregarPuntoPorBloque)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->AgregarPuntoPorBloque();
+	P_NATIVE_END;
+}
+// End Class UUIManager Function AgregarPuntoPorBloque
+
+// Begin Class UUIManager Function CambiarNivelPorPuntos
+struct Z_Construct_UFunction_UUIManager_CambiarNivelPorPuntos_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "UI" },
+		{ "ModuleRelativePath", "UIManager.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UUIManager_CambiarNivelPorPuntos_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UUIManager, nullptr, "CambiarNivelPorPuntos", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UUIManager_CambiarNivelPorPuntos_Statics::Function_MetaDataParams), Z_Construct_UFunction_UUIManager_CambiarNivelPorPuntos_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_UUIManager_CambiarNivelPorPuntos()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UUIManager_CambiarNivelPorPuntos_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UUIManager::execCambiarNivelPorPuntos)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->CambiarNivelPorPuntos();
+	P_NATIVE_END;
+}
+// End Class UUIManager Function CambiarNivelPorPuntos
+
+// Begin Class UUIManager Function EstablecerGameplayFacade
+struct Z_Construct_UFunction_UUIManager_EstablecerGameplayFacade_Statics
+{
+	struct UIManager_eventEstablecerGameplayFacade_Parms
+	{
+		UGameplayFacade* Facade;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "UI" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Funci\xc3\xb3n para establecer referencia al GameplayFacade\n" },
+#endif
+		{ "ModuleRelativePath", "UIManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Funci\xc3\xb3n para establecer referencia al GameplayFacade" },
+#endif
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_Facade;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UUIManager_EstablecerGameplayFacade_Statics::NewProp_Facade = { "Facade", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UIManager_eventEstablecerGameplayFacade_Parms, Facade), Z_Construct_UClass_UGameplayFacade_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UUIManager_EstablecerGameplayFacade_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UUIManager_EstablecerGameplayFacade_Statics::NewProp_Facade,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UUIManager_EstablecerGameplayFacade_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UUIManager_EstablecerGameplayFacade_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UUIManager, nullptr, "EstablecerGameplayFacade", nullptr, nullptr, Z_Construct_UFunction_UUIManager_EstablecerGameplayFacade_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UUIManager_EstablecerGameplayFacade_Statics::PropPointers), sizeof(Z_Construct_UFunction_UUIManager_EstablecerGameplayFacade_Statics::UIManager_eventEstablecerGameplayFacade_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UUIManager_EstablecerGameplayFacade_Statics::Function_MetaDataParams), Z_Construct_UFunction_UUIManager_EstablecerGameplayFacade_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_UUIManager_EstablecerGameplayFacade_Statics::UIManager_eventEstablecerGameplayFacade_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_UUIManager_EstablecerGameplayFacade()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UUIManager_EstablecerGameplayFacade_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UUIManager::execEstablecerGameplayFacade)
+{
+	P_GET_OBJECT(UGameplayFacade,Z_Param_Facade);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->EstablecerGameplayFacade(Z_Param_Facade);
+	P_NATIVE_END;
+}
+// End Class UUIManager Function EstablecerGameplayFacade
+
+// Begin Class UUIManager Function InicializarUIManager
+struct Z_Construct_UFunction_UUIManager_InicializarUIManager_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "UI" },
+		{ "ModuleRelativePath", "UIManager.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UUIManager_InicializarUIManager_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UUIManager, nullptr, "InicializarUIManager", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UUIManager_InicializarUIManager_Statics::Function_MetaDataParams), Z_Construct_UFunction_UUIManager_InicializarUIManager_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_UUIManager_InicializarUIManager()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UUIManager_InicializarUIManager_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UUIManager::execInicializarUIManager)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->InicializarUIManager();
+	P_NATIVE_END;
+}
+// End Class UUIManager Function InicializarUIManager
+
+// Begin Class UUIManager Function MostrarContadorPuntosPermanente
+struct Z_Construct_UFunction_UUIManager_MostrarContadorPuntosPermanente_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "UI" },
+		{ "ModuleRelativePath", "UIManager.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UUIManager_MostrarContadorPuntosPermanente_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UUIManager, nullptr, "MostrarContadorPuntosPermanente", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UUIManager_MostrarContadorPuntosPermanente_Statics::Function_MetaDataParams), Z_Construct_UFunction_UUIManager_MostrarContadorPuntosPermanente_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_UUIManager_MostrarContadorPuntosPermanente()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UUIManager_MostrarContadorPuntosPermanente_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UUIManager::execMostrarContadorPuntosPermanente)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->MostrarContadorPuntosPermanente();
+	P_NATIVE_END;
+}
+// End Class UUIManager Function MostrarContadorPuntosPermanente
+
 // Begin Class UUIManager Function MostrarMensaje
 struct Z_Construct_UFunction_UUIManager_MostrarMensaje_Statics
 {
@@ -358,6 +534,78 @@ DEFINE_FUNCTION(UUIManager::execMostrarPowerUpRecogido)
 }
 // End Class UUIManager Function MostrarPowerUpRecogido
 
+// Begin Class UUIManager Function ObtenerPuntosPorBloques
+struct Z_Construct_UFunction_UUIManager_ObtenerPuntosPorBloques_Statics
+{
+	struct UIManager_eventObtenerPuntosPorBloques_Parms
+	{
+		int32 ReturnValue;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "UI" },
+		{ "ModuleRelativePath", "UIManager.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FIntPropertyParams NewProp_ReturnValue;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_UUIManager_ObtenerPuntosPorBloques_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UIManager_eventObtenerPuntosPorBloques_Parms, ReturnValue), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UUIManager_ObtenerPuntosPorBloques_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UUIManager_ObtenerPuntosPorBloques_Statics::NewProp_ReturnValue,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UUIManager_ObtenerPuntosPorBloques_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UUIManager_ObtenerPuntosPorBloques_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UUIManager, nullptr, "ObtenerPuntosPorBloques", nullptr, nullptr, Z_Construct_UFunction_UUIManager_ObtenerPuntosPorBloques_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UUIManager_ObtenerPuntosPorBloques_Statics::PropPointers), sizeof(Z_Construct_UFunction_UUIManager_ObtenerPuntosPorBloques_Statics::UIManager_eventObtenerPuntosPorBloques_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UUIManager_ObtenerPuntosPorBloques_Statics::Function_MetaDataParams), Z_Construct_UFunction_UUIManager_ObtenerPuntosPorBloques_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_UUIManager_ObtenerPuntosPorBloques_Statics::UIManager_eventObtenerPuntosPorBloques_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_UUIManager_ObtenerPuntosPorBloques()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UUIManager_ObtenerPuntosPorBloques_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UUIManager::execObtenerPuntosPorBloques)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	*(int32*)Z_Param__Result=P_THIS->ObtenerPuntosPorBloques();
+	P_NATIVE_END;
+}
+// End Class UUIManager Function ObtenerPuntosPorBloques
+
+// Begin Class UUIManager Function ReiniciarPuntos
+struct Z_Construct_UFunction_UUIManager_ReiniciarPuntos_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "UI" },
+		{ "ModuleRelativePath", "UIManager.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UUIManager_ReiniciarPuntos_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UUIManager, nullptr, "ReiniciarPuntos", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UUIManager_ReiniciarPuntos_Statics::Function_MetaDataParams), Z_Construct_UFunction_UUIManager_ReiniciarPuntos_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_UUIManager_ReiniciarPuntos()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UUIManager_ReiniciarPuntos_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UUIManager::execReiniciarPuntos)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->ReiniciarPuntos();
+	P_NATIVE_END;
+}
+// End Class UUIManager Function ReiniciarPuntos
+
 // Begin Class UUIManager
 void UUIManager::StaticRegisterNativesUUIManager()
 {
@@ -367,10 +615,17 @@ void UUIManager::StaticRegisterNativesUUIManager()
 		{ "ActualizarContadorEnemigos", &UUIManager::execActualizarContadorEnemigos },
 		{ "ActualizarPuntuacion", &UUIManager::execActualizarPuntuacion },
 		{ "ActualizarVidaJugador", &UUIManager::execActualizarVidaJugador },
+		{ "AgregarPuntoPorBloque", &UUIManager::execAgregarPuntoPorBloque },
+		{ "CambiarNivelPorPuntos", &UUIManager::execCambiarNivelPorPuntos },
+		{ "EstablecerGameplayFacade", &UUIManager::execEstablecerGameplayFacade },
+		{ "InicializarUIManager", &UUIManager::execInicializarUIManager },
+		{ "MostrarContadorPuntosPermanente", &UUIManager::execMostrarContadorPuntosPermanente },
 		{ "MostrarMensaje", &UUIManager::execMostrarMensaje },
 		{ "MostrarPantallaMuerte", &UUIManager::execMostrarPantallaMuerte },
 		{ "MostrarPantallaVictoria", &UUIManager::execMostrarPantallaVictoria },
 		{ "MostrarPowerUpRecogido", &UUIManager::execMostrarPowerUpRecogido },
+		{ "ObtenerPuntosPorBloques", &UUIManager::execObtenerPuntosPorBloques },
+		{ "ReiniciarPuntos", &UUIManager::execReiniciarPuntos },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 }
@@ -387,17 +642,35 @@ struct Z_Construct_UClass_UUIManager_Statics
 		{ "IncludePath", "UIManager.h" },
 		{ "ModuleRelativePath", "UIManager.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_GameplayFacadeRef_MetaData[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Referencia al GameplayFacade\n" },
+#endif
+		{ "ModuleRelativePath", "UIManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Referencia al GameplayFacade" },
+#endif
+	};
 #endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_GameplayFacadeRef;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_UUIManager_ActualizarContadorBombas, "ActualizarContadorBombas" }, // 997915866
 		{ &Z_Construct_UFunction_UUIManager_ActualizarContadorEnemigos, "ActualizarContadorEnemigos" }, // 2832561098
 		{ &Z_Construct_UFunction_UUIManager_ActualizarPuntuacion, "ActualizarPuntuacion" }, // 3841797958
 		{ &Z_Construct_UFunction_UUIManager_ActualizarVidaJugador, "ActualizarVidaJugador" }, // 3227382883
+		{ &Z_Construct_UFunction_UUIManager_AgregarPuntoPorBloque, "AgregarPuntoPorBloque" }, // 3097618392
+		{ &Z_Construct_UFunction_UUIManager_CambiarNivelPorPuntos, "CambiarNivelPorPuntos" }, // 1089219650
+		{ &Z_Construct_UFunction_UUIManager_EstablecerGameplayFacade, "EstablecerGameplayFacade" }, // 1956128574
+		{ &Z_Construct_UFunction_UUIManager_InicializarUIManager, "InicializarUIManager" }, // 2612071214
+		{ &Z_Construct_UFunction_UUIManager_MostrarContadorPuntosPermanente, "MostrarContadorPuntosPermanente" }, // 1083760666
 		{ &Z_Construct_UFunction_UUIManager_MostrarMensaje, "MostrarMensaje" }, // 3032293857
 		{ &Z_Construct_UFunction_UUIManager_MostrarPantallaMuerte, "MostrarPantallaMuerte" }, // 3457742489
 		{ &Z_Construct_UFunction_UUIManager_MostrarPantallaVictoria, "MostrarPantallaVictoria" }, // 3359582980
 		{ &Z_Construct_UFunction_UUIManager_MostrarPowerUpRecogido, "MostrarPowerUpRecogido" }, // 1769383856
+		{ &Z_Construct_UFunction_UUIManager_ObtenerPuntosPorBloques, "ObtenerPuntosPorBloques" }, // 349513670
+		{ &Z_Construct_UFunction_UUIManager_ReiniciarPuntos, "ReiniciarPuntos" }, // 1328990726
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static const UECodeGen_Private::FImplementedInterfaceParams InterfaceParams[];
@@ -406,6 +679,11 @@ struct Z_Construct_UClass_UUIManager_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UUIManager_Statics::NewProp_GameplayFacadeRef = { "GameplayFacadeRef", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UUIManager, GameplayFacadeRef), Z_Construct_UClass_UGameplayFacade_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_GameplayFacadeRef_MetaData), NewProp_GameplayFacadeRef_MetaData) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UUIManager_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UUIManager_Statics::NewProp_GameplayFacadeRef,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UUIManager_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UUIManager_Statics::DependentSingletons[])() = {
 	(UObject* (*)())Z_Construct_UClass_UObject,
 	(UObject* (*)())Z_Construct_UPackage__Script_FinalBomberMan,
@@ -420,11 +698,11 @@ const UECodeGen_Private::FClassParams Z_Construct_UClass_UUIManager_Statics::Cla
 	&StaticCppClassTypeInfo,
 	DependentSingletons,
 	FuncInfo,
-	nullptr,
+	Z_Construct_UClass_UUIManager_Statics::PropPointers,
 	InterfaceParams,
 	UE_ARRAY_COUNT(DependentSingletons),
 	UE_ARRAY_COUNT(FuncInfo),
-	0,
+	UE_ARRAY_COUNT(Z_Construct_UClass_UUIManager_Statics::PropPointers),
 	UE_ARRAY_COUNT(InterfaceParams),
 	0x001000A0u,
 	METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UUIManager_Statics::Class_MetaDataParams), Z_Construct_UClass_UUIManager_Statics::Class_MetaDataParams)
@@ -446,14 +724,14 @@ UUIManager::~UUIManager() {}
 // End Class UUIManager
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_UIManager_h_Statics
+struct Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_UIManager_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UUIManager, UUIManager::StaticClass, TEXT("UUIManager"), &Z_Registration_Info_UClass_UUIManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UUIManager), 4143964530U) },
+		{ Z_Construct_UClass_UUIManager, UUIManager::StaticClass, TEXT("UUIManager"), &Z_Registration_Info_UClass_UUIManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UUIManager), 3281059413U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_UIManager_h_3501562429(TEXT("/Script/FinalBomberMan"),
-	Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_UIManager_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_UIManager_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_UIManager_h_3998168705(TEXT("/Script/FinalBomberMan"),
+	Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_UIManager_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_UIManager_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

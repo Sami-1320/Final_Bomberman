@@ -9,6 +9,8 @@
 #include "UObject/ConstructorHelpers.h"
 #include "PowerUp.h"
 #include "Enemigo.h"
+#include "UIManager.h"
+#include "GameplayFacade.h"
 
 AFinalBomberManGameMode::AFinalBomberManGameMode()
 {
@@ -74,6 +76,35 @@ AFinalBomberManGameMode::AFinalBomberManGameMode()
     {
         UE_LOG(LogTemp, Error, TEXT("ADVERTENCIA: EnemigoClass es NULL"));
     }
+
+    // Configurar valores por defecto
+    NivelActual = 1;
+    MapaActual = nullptr;
+    PowerUpClass = APowerUp::StaticClass();
+    
+    UE_LOG(LogTemp, Warning, TEXT("GameMode Constructor: Iniciando..."));
+    
+    // Crear y configurar GameplayFacade
+    GameplayFacade = NewObject<UGameplayFacade>();
+    if (GameplayFacade)
+    {
+        GameplayFacade->InicializarJuego(GetWorld());
+        UE_LOG(LogTemp, Warning, TEXT("GameMode Constructor: GameplayFacade creado y configurado"));
+    }
+    else
+    {
+        UE_LOG(LogTemp, Error, TEXT("GameMode Constructor: ERROR - No se pudo crear GameplayFacade"));
+    }
+    
+    // Mostrar contador de puntos inicial directamente
+    if (GEngine)
+    {
+        GEngine->AddOnScreenDebugMessage(300, -1.0f, FColor::Yellow, TEXT("PUNTOS: 0/10"));
+        UE_LOG(LogTemp, Warning, TEXT("GameMode Constructor: Contador de puntos inicial mostrado"));
+    }
+    
+    // Spawnear power-ups aleatorios (comentado para evitar duplicados)
+    // SpawnPowerUpsAleatorios();
 }
 
 void AFinalBomberManGameMode::BeginPlay()
@@ -86,36 +117,37 @@ void AFinalBomberManGameMode::BeginPlay()
     // Cargar el primer nivel
     CargarNivel(1);
 
-    // Solo spawneamos power-ups si el mapa se ha cargado correctamente
-    if (MapaActual)
-    {
-        SpawnPowerUpsAleatorios();
-    }
-
     UE_LOG(LogTemp, Warning, TEXT("GameMode iniciado - Patrn Builder implementado"));
 }
 
 void AFinalBomberManGameMode::CargarNivel(int32 NumeroNivel)
 {
+    UE_LOG(LogTemp, Warning, TEXT("GameMode CargarNivel: INICIANDO - Nivel solicitado: %d"), NumeroNivel);
+    
     if (!DirectorNivelesActual)
     {
         UE_LOG(LogTemp, Error, TEXT("Director no inicializado"));
         return;
     }
 
+    UE_LOG(LogTemp, Warning, TEXT("GameMode CargarNivel: Director válido, limpiando mapa anterior"));
+    
     // Limpiar mapa anterior
     LimpiarMapaActual();
 
     // Establecer nivel actual
     NivelActual = NumeroNivel;
+    UE_LOG(LogTemp, Warning, TEXT("GameMode CargarNivel: Nivel actual establecido en: %d"), NivelActual);
 
-    // Crear el nivel seg�n el n�mero
+    // Crear el nivel segn el nmero
     switch (NumeroNivel)
     {
     case 1:
+        UE_LOG(LogTemp, Warning, TEXT("GameMode CargarNivel: Creando nivel 1 (madera)"));
         MapaActual = UDirectorNiveles::CrearNivel1(GetWorld());
         break;
     case 2:
+        UE_LOG(LogTemp, Warning, TEXT("GameMode CargarNivel: Creando nivel 2 (ladrillo)"));
         MapaActual = UDirectorNiveles::CrearNivel2(GetWorld());
         break;
     default:
@@ -125,15 +157,21 @@ void AFinalBomberManGameMode::CargarNivel(int32 NumeroNivel)
         break;
     }
 
+    UE_LOG(LogTemp, Warning, TEXT("GameMode CargarNivel: Mapa creado: %s"), MapaActual ? TEXT("VÁLIDO") : TEXT("NULL"));
+
     if (!MapaActual)
     {
         UE_LOG(LogTemp, Error, TEXT("Error al crear el mapa del nivel %d"), NivelActual);
         return;
     }
 
-    // Configurar c�mara para el nuevo mapa
+    UE_LOG(LogTemp, Warning, TEXT("GameMode CargarNivel: Configurando cámara"));
+    
+    // Configurar cmara para el nuevo mapa
     ConfigurarCamaraParaMapa();
 
+    UE_LOG(LogTemp, Warning, TEXT("GameMode CargarNivel: Posicionando jugador"));
+    
     // Posicionar jugador en spawn
     APawn* Jugador = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
     if (Jugador)
@@ -158,11 +196,45 @@ void AFinalBomberManGameMode::CargarNivel(int32 NumeroNivel)
 
     UE_LOG(LogTemp, Warning, TEXT("Nivel %d cargado exitosamente"), NivelActual);
 
-    // Spawnear power-ups en el nuevo nivel
-    SpawnPowerUpsAleatorios();
+    // Reiniciar puntos del sistema de conteo
+    TArray<AActor*> FoundActors;
+    UGameplayStatics::GetAllActorsOfClass(GetWorld(), UUIManager::StaticClass(), FoundActors);
+    if (FoundActors.Num() > 0)
+    {
+        UUIManager* UIManager = Cast<UUIManager>(FoundActors[0]);
+        if (UIManager)
+        {
+            UIManager->ReiniciarPuntos();
+            UE_LOG(LogTemp, Warning, TEXT("GameMode CargarNivel: Puntos reiniciados"));
+        }
+        else
+        {
+            UE_LOG(LogTemp, Error, TEXT("GameMode CargarNivel: ERROR - UIManager es NULL"));
+        }
+    }
+    else
+    {
+        UE_LOG(LogTemp, Error, TEXT("GameMode CargarNivel: ERROR - No se encontró UIManager en el mundo"));
+        
+        // Mostrar mensaje de puntos directamente si no hay UIManager
+        if (GEngine)
+        {
+            GEngine->AddOnScreenDebugMessage(300, -1.0f, FColor::Yellow, TEXT("PUNTOS: 0/10"));
+            UE_LOG(LogTemp, Warning, TEXT("GameMode CargarNivel: Mostrando contador de puntos directamente"));
+        }
+    }
 
+    UE_LOG(LogTemp, Warning, TEXT("GameMode CargarNivel: Spawneando power-ups específicos"));
+    
+    // Spawnear power-ups en el nuevo nivel
+    SpawnPowerUpsEspecificos();
+
+    UE_LOG(LogTemp, Warning, TEXT("GameMode CargarNivel: Spawneando enemigos"));
+    
     // Spawnear enemigos en el nuevo nivel
     SpawnEnemigosAleatorios();
+    
+    UE_LOG(LogTemp, Warning, TEXT("GameMode CargarNivel: COMPLETADO - Nivel %d cargado exitosamente"), NivelActual);
 }
 
 void AFinalBomberManGameMode::SiguienteNivel()
@@ -233,71 +305,95 @@ void AFinalBomberManGameMode::ConfigurarCamaraParaMapa()
     }
 }
 
-void AFinalBomberManGameMode::SpawnPowerUpsAleatorios()
+void AFinalBomberManGameMode::SpawnPowerUpsEspecificos()
 {
-    if (!PowerUpClass || !MapaActual)
+    UE_LOG(LogTemp, Warning, TEXT("=== INICIANDO SpawnPowerUpsEspecificos ==="));
+    
+    // Limpiar power-ups existentes antes de spawnear nuevos
+    TArray<AActor*> PowerUpsExistentes;
+    UGameplayStatics::GetAllActorsOfClass(GetWorld(), APowerUp::StaticClass(), PowerUpsExistentes);
+    
+    UE_LOG(LogTemp, Warning, TEXT("Power-ups existentes antes de limpiar: %d"), PowerUpsExistentes.Num());
+    
+    for (AActor* PowerUp : PowerUpsExistentes)
     {
-        UE_LOG(LogTemp, Error, TEXT("No se puede spawnear power-ups: PowerUpClass o MapaActual no válidos"));
+        if (PowerUp && IsValid(PowerUp))
+        {
+            PowerUp->Destroy();
+        }
+    }
+    
+    UE_LOG(LogTemp, Warning, TEXT("Power-ups existentes eliminados"));
+    
+    if (!PowerUpClass)
+    {
+        UE_LOG(LogTemp, Error, TEXT("ERROR: PowerUpClass es NULL"));
         return;
     }
+    
+    if (!MapaActual)
+    {
+        UE_LOG(LogTemp, Error, TEXT("ERROR: MapaActual es NULL"));
+        return;
+    }
+    
+    UE_LOG(LogTemp, Warning, TEXT("PowerUpClass válida: %s"), PowerUpClass ? TEXT("SÍ") : TEXT("NO"));
+    UE_LOG(LogTemp, Warning, TEXT("MapaActual válido: %s"), MapaActual ? TEXT("SÍ") : TEXT("NO"));
+    UE_LOG(LogTemp, Warning, TEXT("GetWorld() válido: %s"), GetWorld() ? TEXT("SÍ") : TEXT("NO"));
 
     int32 PowerUpsSpawneados = 0;
     TArray<FVector2D> PosicionesVacias;
 
     // Recolectar todas las posiciones vacías del mapa
-    int32 TotalTiles = 0;
-    int32 TilesVacios = 0;
-    int32 TilesBloques = 0;
-    int32 TilesSpawnJugador = 0;
-    int32 TilesSpawnEnemigos = 0;
-    int32 TilesSalida = 0;
-    
     for (int32 Y = 0; Y < MapaActual->ObtenerAlto(); Y++)
     {
         for (int32 X = 0; X < MapaActual->ObtenerAncho(); X++)
         {
             ATile* TileActual = MapaActual->ObtenerTileEn(X, Y);
-            TotalTiles++;
-            
-            if (TileActual)
+            if (TileActual && TileActual->ObtenerTipoTile() == ETipoTile::Vacio)
             {
-                switch (TileActual->ObtenerTipoTile())
+                // Verificar si está en la zona segura del spawn del jugador
+                bool bEnZonaSegura = false;
+                
+                // Buscar el spawn del jugador
+                for (int32 SY = 0; SY < MapaActual->ObtenerAlto(); SY++)
                 {
-                    case ETipoTile::Vacio:
-                        TilesVacios++;
-                        PosicionesVacias.Add(FVector2D(X, Y));
-                        break;
-                    case ETipoTile::BloqueDestructible:
-                    case ETipoTile::BloqueIndestructible:
-                        TilesBloques++;
-                        break;
-                    case ETipoTile::SpawnJugador:
-                        TilesSpawnJugador++;
-                        break;
-                    case ETipoTile::SpawnEnemigo:
-                        TilesSpawnEnemigos++;
-                        // También considerar spawns de enemigos como posiciones válidas
-                        PosicionesVacias.Add(FVector2D(X, Y));
-                        break;
-                    case ETipoTile::SalidaNivel:
-                        TilesSalida++;
-                        break;
+                    for (int32 SX = 0; SX < MapaActual->ObtenerAncho(); SX++)
+                    {
+                        ATile* TileSpawn = MapaActual->ObtenerTileEn(SX, SY);
+                        if (TileSpawn && TileSpawn->ObtenerTipoTile() == ETipoTile::SpawnJugador)
+                        {
+                            // Verificar si la posición actual está en la zona segura (3x3)
+                            if (FMath::Abs(X - SX) <= 1 && FMath::Abs(Y - SY) <= 1)
+                            {
+                                bEnZonaSegura = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (bEnZonaSegura) break;
+                }
+                
+                // Solo agregar si no está en la zona segura
+                if (!bEnZonaSegura)
+                {
+                    PosicionesVacias.Add(FVector2D(X, Y));
                 }
             }
         }
     }
     
-    UE_LOG(LogTemp, Warning, TEXT("=== ESTADÍSTICAS DEL MAPA ==="));
-    UE_LOG(LogTemp, Warning, TEXT("Total de tiles: %d"), TotalTiles);
-    UE_LOG(LogTemp, Warning, TEXT("Tiles vacíos: %d"), TilesVacios);
-    UE_LOG(LogTemp, Warning, TEXT("Tiles con bloques: %d"), TilesBloques);
-    UE_LOG(LogTemp, Warning, TEXT("Tiles spawn jugador: %d"), TilesSpawnJugador);
-    UE_LOG(LogTemp, Warning, TEXT("Tiles spawn enemigos: %d"), TilesSpawnEnemigos);
-    UE_LOG(LogTemp, Warning, TEXT("Tiles salida: %d"), TilesSalida);
-    UE_LOG(LogTemp, Warning, TEXT("Posiciones disponibles (vacías + spawns enemigos): %d"), PosicionesVacias.Num());
+    UE_LOG(LogTemp, Warning, TEXT("Posiciones vacías encontradas: %d"), PosicionesVacias.Num());
 
-    // Spawnear power-ups en posiciones aleatorias
-    for (int32 i = 0; i < NumeroDePowerUpsAlInicio && PosicionesVacias.Num() > 0; i++)
+    // Spawnear power-ups específicos: 2 de salto alto y 2 de vida extra
+    int32 PowerUpsSaltoAlto = 0;
+    int32 PowerUpsVidaExtra = 0;
+    
+    UE_LOG(LogTemp, Warning, TEXT("=== INICIANDO SPAWN DE POWER UPS ==="));
+    UE_LOG(LogTemp, Warning, TEXT("Posiciones vacías disponibles: %d"), PosicionesVacias.Num());
+    
+    // Spawnear 2 power-ups de salto alto
+    for (int32 i = 0; i < 2 && PosicionesVacias.Num() > 0; i++)
     {
         // Seleccionar una posición aleatoria
         int32 IndiceAleatorio = FMath::RandRange(0, PosicionesVacias.Num() - 1);
@@ -310,42 +406,84 @@ void AFinalBomberManGameMode::SpawnPowerUpsAleatorios()
             50.0f // Altura para que esté visible
         );
 
-        // Spawnear el power-up
+        UE_LOG(LogTemp, Warning, TEXT("Intentando spawnear PowerUp Salto Alto %d en posición: %s"), i + 1, *PosicionMundo.ToString());
+
+        // Spawnear el power-up de salto alto
         APowerUp* NewPowerUp = GetWorld()->SpawnActor<APowerUp>(PowerUpClass, PosicionMundo, FRotator::ZeroRotator);
         if (NewPowerUp)
         {
-            // Asignar un tipo aleatorio
-            ETipoPowerUp TiposDisponibles[] = {
-                ETipoPowerUp::BombaExtra,
-                ETipoPowerUp::RadioExplosion,
-                ETipoPowerUp::Velocidad,
-                ETipoPowerUp::Escudo,
-                ETipoPowerUp::BombaRemota,
-                ETipoPowerUp::Inmortalidad
-            };
-            
-            int32 TipoAleatorio = FMath::RandRange(0, 5);
-            NewPowerUp->TipoPowerUp = TiposDisponibles[TipoAleatorio];
-            
+            NewPowerUp->TipoPowerUp = ETipoPowerUp::SaltoAlto;
+            PowerUpsSaltoAlto++;
             PowerUpsSpawneados++;
-            UE_LOG(LogTemp, Warning, TEXT("PowerUp spawneado en (%f, %f) - Tipo: %d"), 
-                PosicionGrid.X, PosicionGrid.Y, (int32)NewPowerUp->TipoPowerUp);
+            UE_LOG(LogTemp, Warning, TEXT("✓ PowerUp Salto Alto %d spawneado exitosamente en (%f, %f)"), 
+                PowerUpsSaltoAlto, PosicionGrid.X, PosicionGrid.Y);
+        }
+        else
+        {
+            UE_LOG(LogTemp, Error, TEXT("✗ Falló al spawnear PowerUp Salto Alto %d"), i + 1);
         }
 
         // Remover la posición usada para evitar duplicados
         PosicionesVacias.RemoveAt(IndiceAleatorio);
     }
-
-    // Mostrar mensaje en pantalla
-    FString Mensaje = FString::Printf(TEXT("¡Se han spawneado %d power-ups en el mapa!"), PowerUpsSpawneados);
     
-    // Usar GEngine para mostrar el mensaje en pantalla con color más llamativo
-    if (GEngine)
+    UE_LOG(LogTemp, Warning, TEXT("PowerUps Salto Alto spawneados: %d"), PowerUpsSaltoAlto);
+    UE_LOG(LogTemp, Warning, TEXT("Posiciones vacías restantes: %d"), PosicionesVacias.Num());
+    
+    // Spawnear 2 power-ups de vida extra
+    for (int32 i = 0; i < 2 && PosicionesVacias.Num() > 0; i++)
     {
-        GEngine->AddOnScreenDebugMessage(-1, 8.0f, FColor::Green, Mensaje);
+        // Seleccionar una posición aleatoria
+        int32 IndiceAleatorio = FMath::RandRange(0, PosicionesVacias.Num() - 1);
+        FVector2D PosicionGrid = PosicionesVacias[IndiceAleatorio];
+        
+        // Calcular posición en el mundo
+        FVector PosicionMundo = FVector(
+            PosicionGrid.X * MapaActual->ObtenerTamanoTile(),
+            PosicionGrid.Y * MapaActual->ObtenerTamanoTile(),
+            50.0f // Altura para que esté visible
+        );
+
+        UE_LOG(LogTemp, Warning, TEXT("Intentando spawnear PowerUp Vida Extra %d en posición: %s"), i + 1, *PosicionMundo.ToString());
+
+        // Spawnear el power-up de vida extra
+        APowerUp* NewPowerUp = GetWorld()->SpawnActor<APowerUp>(PowerUpClass, PosicionMundo, FRotator::ZeroRotator);
+        if (NewPowerUp)
+        {
+            NewPowerUp->TipoPowerUp = ETipoPowerUp::VidaExtra;
+            PowerUpsVidaExtra++;
+            PowerUpsSpawneados++;
+            UE_LOG(LogTemp, Warning, TEXT("✓ PowerUp Vida Extra %d spawneado exitosamente en (%f, %f)"), 
+                PowerUpsVidaExtra, PosicionGrid.X, PosicionGrid.Y);
+        }
+        else
+        {
+            UE_LOG(LogTemp, Error, TEXT("✗ Falló al spawnear PowerUp Vida Extra %d"), i + 1);
+        }
+
+        // Remover la posición usada para evitar duplicados
+        PosicionesVacias.RemoveAt(IndiceAleatorio);
     }
     
+    UE_LOG(LogTemp, Warning, TEXT("PowerUps Vida Extra spawneados: %d"), PowerUpsVidaExtra);
+    UE_LOG(LogTemp, Warning, TEXT("=== FINALIZADO SPAWN DE POWER UPS ==="));
+
+    // Mostrar mensaje en pantalla
+    // FString Mensaje = FString::Printf(TEXT("¡Se han spawneado %d power-ups en el mapa!"), PowerUpsSpawneados);
+    // FString MensajeDetallado = FString::Printf(TEXT("Salto Alto: %d | Vida Extra: %d"), PowerUpsSaltoAlto, PowerUpsVidaExtra);
+    // FString MensajeTipos = TEXT("Tipos de Power Up: Salto Alto (2), Vida Extra (2)");
+    
+    // Usar GEngine para mostrar el mensaje en pantalla con color más llamativo
+    // if (GEngine)
+    // {
+    //     GEngine->AddOnScreenDebugMessage(-1, 8.0f, FColor::Green, Mensaje);
+    //     GEngine->AddOnScreenDebugMessage(-1, 6.0f, FColor::Cyan, MensajeDetallado);
+    //     GEngine->AddOnScreenDebugMessage(-1, 6.0f, FColor::Yellow, MensajeTipos);
+    // }
+    
     UE_LOG(LogTemp, Warning, TEXT("Se han spawneado %d power-ups en el mapa"), PowerUpsSpawneados);
+    UE_LOG(LogTemp, Warning, TEXT("Salto Alto: %d | Vida Extra: %d"), PowerUpsSaltoAlto, PowerUpsVidaExtra);
+    UE_LOG(LogTemp, Warning, TEXT("Tipos of Power Up: Salto Alto (2), Vida Extra (2)"));
 }
 
 void AFinalBomberManGameMode::SpawnEnemigosAleatorios()
@@ -398,7 +536,33 @@ void AFinalBomberManGameMode::SpawnEnemigosAleatorios()
             ATile* TileActual = MapaActual->ObtenerTileEn(X, Y);
             if (TileActual && TileActual->ObtenerTipoTile() == ETipoTile::Vacio)
             {
-                PosicionesVacias.Add(FVector2D(X, Y));
+                // Verificar si está en la zona segura del spawn del jugador
+                bool bEnZonaSegura = false;
+                
+                // Buscar el spawn del jugador
+                for (int32 SY = 0; SY < MapaActual->ObtenerAlto(); SY++)
+                {
+                    for (int32 SX = 0; SX < MapaActual->ObtenerAncho(); SX++)
+                    {
+                        ATile* TileSpawn = MapaActual->ObtenerTileEn(SX, SY);
+                        if (TileSpawn && TileSpawn->ObtenerTipoTile() == ETipoTile::SpawnJugador)
+                        {
+                            // Verificar si la posición actual está en la zona segura (3x3)
+                            if (FMath::Abs(X - SX) <= 1 && FMath::Abs(Y - SY) <= 1)
+                            {
+                                bEnZonaSegura = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (bEnZonaSegura) break;
+                }
+                
+                // Solo agregar si no está en la zona segura
+                if (!bEnZonaSegura)
+                {
+                    PosicionesVacias.Add(FVector2D(X, Y));
+                }
             }
         }
     }
@@ -432,6 +596,13 @@ void AFinalBomberManGameMode::SpawnEnemigosAleatorios()
     int32 NumeroEnemigos = FMath::Clamp(FMath::RandRange(1, 3), 1, PosicionesVacias.Num());
     if (NumeroEnemigos < 1 && PosicionesVacias.Num() > 0) NumeroEnemigos = 1;
     
+    // En el nivel 2, agregar un enemigo extra
+    if (NivelActual == 2)
+    {
+        NumeroEnemigos = FMath::Min(NumeroEnemigos + 1, PosicionesVacias.Num());
+        UE_LOG(LogTemp, Warning, TEXT("Nivel 2 detectado - Agregando enemigo extra. Total: %d"), NumeroEnemigos);
+    }
+    
     UE_LOG(LogTemp, Warning, TEXT("Número de enemigos a spawnear: %d"), NumeroEnemigos);
     
     // Si no hay posiciones vacías, intentar spawnear en una posición fija
@@ -455,7 +626,14 @@ void AFinalBomberManGameMode::SpawnEnemigosAleatorios()
         }
         
         // Mostrar mensaje en pantalla
-        FString Mensaje = FString::Printf(TEXT("¡Se han spawneado %d enemigos en el mapa!"), EnemigosSpawneados);
+        // FString Mensaje = FString::Printf(TEXT("¡Se han spawneado %d enemigos en el mapa!"), EnemigosSpawneados);
+        // if (GEngine)
+        // {
+        //     GEngine->AddOnScreenDebugMessage(-1, 8.0f, FColor::Red, Mensaje);
+        // }
+        
+        // Mostrar mensaje en pantalla
+        FString Mensaje = FString::Printf(TEXT("Enemigos: %d"), EnemigosSpawneados);
         if (GEngine)
         {
             GEngine->AddOnScreenDebugMessage(-1, 8.0f, FColor::Red, Mensaje);
@@ -529,7 +707,16 @@ void AFinalBomberManGameMode::SpawnEnemigosAleatorios()
     }
 
     // Mostrar mensaje en pantalla
-    FString Mensaje = FString::Printf(TEXT("¡Se han spawneado %d enemigos en el mapa!"), EnemigosSpawneados);
+    // FString Mensaje = FString::Printf(TEXT("¡Se han spawneado %d enemigos en el mapa!"), EnemigosSpawneados);
+    
+    // Usar GEngine para mostrar el mensaje en pantalla
+    // if (GEngine)
+    // {
+    //     GEngine->AddOnScreenDebugMessage(-1, 8.0f, FColor::Red, Mensaje);
+    // }
+    
+    // Mostrar mensaje en pantalla
+    FString Mensaje = FString::Printf(TEXT("Enemigos: %d"), EnemigosSpawneados);
     
     // Usar GEngine para mostrar el mensaje en pantalla
     if (GEngine)
@@ -539,20 +726,29 @@ void AFinalBomberManGameMode::SpawnEnemigosAleatorios()
     
     UE_LOG(LogTemp, Warning, TEXT("=== FINALIZADO SpawnEnemigosAleatorios - Enemigos spawneados: %d ==="), EnemigosSpawneados);
     
-    // Mostrar información adicional sobre los tipos de enemigos
-    if (EnemigosSpawneados > 0)
+}
+
+// Función estática para actualizar puntos desde cualquier lugar
+void AFinalBomberManGameMode::ActualizarContadorPuntosGlobal(int32 PuntosActuales, int32 PuntosMaximos, bool bEsEnemigo)
+{
+    if (GEngine)
     {
-        FString MensajeTipos = TEXT("Tipos de enemigos: Básico, Rápido, Tanque, Explosivo, Volador");
-        if (GEngine)
+        FString MensajePuntos = FString::Printf(TEXT("PUNTOS: %d/%d"), PuntosActuales, PuntosMaximos);
+        GEngine->AddOnScreenDebugMessage(300, -1.0f, FColor::Yellow, MensajePuntos);
+        
+        // Mostrar mensaje de confirmación según el tipo
+        if (bEsEnemigo)
         {
-            GEngine->AddOnScreenDebugMessage(-1, 6.0f, FColor::Orange, MensajeTipos);
+            FString MensajeConfirmacion = FString::Printf(TEXT("¡+2 PUNTOS! Enemigo eliminado. Total: %d"), PuntosActuales);
+            GEngine->AddOnScreenDebugMessage(302, 2.0f, FColor::Red, MensajeConfirmacion);
+        }
+        else if (PuntosActuales > 0)
+        {
+            FString MensajeConfirmacion = FString::Printf(TEXT("Puntos: %d"), PuntosActuales);
+            GEngine->AddOnScreenDebugMessage(301, 2.0f, FColor::Green, MensajeConfirmacion);
         }
         
-        // Mostrar mensaje sobre el número aleatorio
-        FString MensajeAleatorio = TEXT("Número de enemigos: Aleatorio (1-3)");
-        if (GEngine)
-        {
-            GEngine->AddOnScreenDebugMessage(-1, 6.0f, FColor::Yellow, MensajeAleatorio);
-        }
+        UE_LOG(LogTemp, Warning, TEXT("GameMode ActualizarContadorPuntosGlobal: Puntos actualizados a %d/%d (Enemigo: %s)"), 
+               PuntosActuales, PuntosMaximos, bEsEnemigo ? TEXT("SÍ") : TEXT("NO"));
     }
 }

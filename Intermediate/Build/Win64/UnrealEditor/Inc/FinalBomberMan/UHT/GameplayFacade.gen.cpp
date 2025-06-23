@@ -94,7 +94,7 @@ struct Z_Construct_UFunction_UGameplayFacade_AplicarPowerUp_Statics
 };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UGameplayFacade_AplicarPowerUp_Statics::NewProp_Jugador = { "Jugador", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(GameplayFacade_eventAplicarPowerUp_Parms, Jugador), Z_Construct_UClass_AFinalBomberManCharacter_NoRegister, METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_UGameplayFacade_AplicarPowerUp_Statics::NewProp_Tipo_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_UGameplayFacade_AplicarPowerUp_Statics::NewProp_Tipo = { "Tipo", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(GameplayFacade_eventAplicarPowerUp_Parms, Tipo), Z_Construct_UEnum_FinalBomberMan_ETipoPowerUp, METADATA_PARAMS(0, nullptr) }; // 162526442
+const UECodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_UGameplayFacade_AplicarPowerUp_Statics::NewProp_Tipo = { "Tipo", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(GameplayFacade_eventAplicarPowerUp_Parms, Tipo), Z_Construct_UEnum_FinalBomberMan_ETipoPowerUp, METADATA_PARAMS(0, nullptr) }; // 1306924834
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UGameplayFacade_AplicarPowerUp_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UGameplayFacade_AplicarPowerUp_Statics::NewProp_Jugador,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UGameplayFacade_AplicarPowerUp_Statics::NewProp_Tipo_Underlying,
@@ -122,6 +122,36 @@ DEFINE_FUNCTION(UGameplayFacade::execAplicarPowerUp)
 	P_NATIVE_END;
 }
 // End Class UGameplayFacade Function AplicarPowerUp
+
+// Begin Class UGameplayFacade Function CambiarNivelPorPuntos
+struct Z_Construct_UFunction_UGameplayFacade_CambiarNivelPorPuntos_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Gameplay Facade" },
+		{ "ModuleRelativePath", "GameplayFacade.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UGameplayFacade_CambiarNivelPorPuntos_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UGameplayFacade, nullptr, "CambiarNivelPorPuntos", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UGameplayFacade_CambiarNivelPorPuntos_Statics::Function_MetaDataParams), Z_Construct_UFunction_UGameplayFacade_CambiarNivelPorPuntos_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_UGameplayFacade_CambiarNivelPorPuntos()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UGameplayFacade_CambiarNivelPorPuntos_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UGameplayFacade::execCambiarNivelPorPuntos)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->CambiarNivelPorPuntos();
+	P_NATIVE_END;
+}
+// End Class UGameplayFacade Function CambiarNivelPorPuntos
 
 // Begin Class UGameplayFacade Function CancelarBomba
 struct Z_Construct_UFunction_UGameplayFacade_CancelarBomba_Statics
@@ -430,7 +460,7 @@ struct Z_Construct_UFunction_UGameplayFacade_CrearPowerUp_Statics
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
 const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_UGameplayFacade_CrearPowerUp_Statics::NewProp_Tipo_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_UGameplayFacade_CrearPowerUp_Statics::NewProp_Tipo = { "Tipo", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(GameplayFacade_eventCrearPowerUp_Parms, Tipo), Z_Construct_UEnum_FinalBomberMan_ETipoPowerUp, METADATA_PARAMS(0, nullptr) }; // 162526442
+const UECodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_UGameplayFacade_CrearPowerUp_Statics::NewProp_Tipo = { "Tipo", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(GameplayFacade_eventCrearPowerUp_Parms, Tipo), Z_Construct_UEnum_FinalBomberMan_ETipoPowerUp, METADATA_PARAMS(0, nullptr) }; // 1306924834
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UGameplayFacade_CrearPowerUp_Statics::NewProp_Posicion = { "Posicion", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(GameplayFacade_eventCrearPowerUp_Parms, Posicion), Z_Construct_UScriptStruct_FVector2D, METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UGameplayFacade_CrearPowerUp_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(GameplayFacade_eventCrearPowerUp_Parms, ReturnValue), Z_Construct_UClass_APowerUp_NoRegister, METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UGameplayFacade_CrearPowerUp_Statics::PropPointers[] = {
@@ -994,6 +1024,54 @@ DEFINE_FUNCTION(UGameplayFacade::execObtenerEnemigosVivos)
 }
 // End Class UGameplayFacade Function ObtenerEnemigosVivos
 
+// Begin Class UGameplayFacade Function ObtenerGameEventManager
+struct Z_Construct_UFunction_UGameplayFacade_ObtenerGameEventManager_Statics
+{
+	struct GameplayFacade_eventObtenerGameEventManager_Parms
+	{
+		UGameEventManager* ReturnValue;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Gameplay Facade" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Acceso a sistemas internos\n" },
+#endif
+		{ "ModuleRelativePath", "GameplayFacade.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Acceso a sistemas internos" },
+#endif
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_ReturnValue;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UGameplayFacade_ObtenerGameEventManager_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(GameplayFacade_eventObtenerGameEventManager_Parms, ReturnValue), Z_Construct_UClass_UGameEventManager_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UGameplayFacade_ObtenerGameEventManager_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UGameplayFacade_ObtenerGameEventManager_Statics::NewProp_ReturnValue,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UGameplayFacade_ObtenerGameEventManager_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UGameplayFacade_ObtenerGameEventManager_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UGameplayFacade, nullptr, "ObtenerGameEventManager", nullptr, nullptr, Z_Construct_UFunction_UGameplayFacade_ObtenerGameEventManager_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UGameplayFacade_ObtenerGameEventManager_Statics::PropPointers), sizeof(Z_Construct_UFunction_UGameplayFacade_ObtenerGameEventManager_Statics::GameplayFacade_eventObtenerGameEventManager_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UGameplayFacade_ObtenerGameEventManager_Statics::Function_MetaDataParams), Z_Construct_UFunction_UGameplayFacade_ObtenerGameEventManager_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_UGameplayFacade_ObtenerGameEventManager_Statics::GameplayFacade_eventObtenerGameEventManager_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_UGameplayFacade_ObtenerGameEventManager()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UGameplayFacade_ObtenerGameEventManager_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UGameplayFacade::execObtenerGameEventManager)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	*(UGameEventManager**)Z_Param__Result=P_THIS->ObtenerGameEventManager();
+	P_NATIVE_END;
+}
+// End Class UGameplayFacade Function ObtenerGameEventManager
+
 // Begin Class UGameplayFacade Function ObtenerNivelActual
 struct Z_Construct_UFunction_UGameplayFacade_ObtenerNivelActual_Statics
 {
@@ -1196,7 +1274,7 @@ struct Z_Construct_UFunction_UGameplayFacade_RemoverPowerUp_Statics
 };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UGameplayFacade_RemoverPowerUp_Statics::NewProp_Jugador = { "Jugador", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(GameplayFacade_eventRemoverPowerUp_Parms, Jugador), Z_Construct_UClass_AFinalBomberManCharacter_NoRegister, METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_UGameplayFacade_RemoverPowerUp_Statics::NewProp_Tipo_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_UGameplayFacade_RemoverPowerUp_Statics::NewProp_Tipo = { "Tipo", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(GameplayFacade_eventRemoverPowerUp_Parms, Tipo), Z_Construct_UEnum_FinalBomberMan_ETipoPowerUp, METADATA_PARAMS(0, nullptr) }; // 162526442
+const UECodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_UGameplayFacade_RemoverPowerUp_Statics::NewProp_Tipo = { "Tipo", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(GameplayFacade_eventRemoverPowerUp_Parms, Tipo), Z_Construct_UEnum_FinalBomberMan_ETipoPowerUp, METADATA_PARAMS(0, nullptr) }; // 1306924834
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UGameplayFacade_RemoverPowerUp_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UGameplayFacade_RemoverPowerUp_Statics::NewProp_Jugador,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UGameplayFacade_RemoverPowerUp_Statics::NewProp_Tipo_Underlying,
@@ -1371,6 +1449,7 @@ void UGameplayFacade::StaticRegisterNativesUGameplayFacade()
 	static const FNameNativePtrPair Funcs[] = {
 		{ "ActualizarPuntuacion", &UGameplayFacade::execActualizarPuntuacion },
 		{ "AplicarPowerUp", &UGameplayFacade::execAplicarPowerUp },
+		{ "CambiarNivelPorPuntos", &UGameplayFacade::execCambiarNivelPorPuntos },
 		{ "CancelarBomba", &UGameplayFacade::execCancelarBomba },
 		{ "CargarNivel", &UGameplayFacade::execCargarNivel },
 		{ "ColocarBomba", &UGameplayFacade::execColocarBomba },
@@ -1390,6 +1469,7 @@ void UGameplayFacade::StaticRegisterNativesUGameplayFacade()
 		{ "MostrarPantallaMuerte", &UGameplayFacade::execMostrarPantallaMuerte },
 		{ "MostrarPantallaVictoria", &UGameplayFacade::execMostrarPantallaVictoria },
 		{ "ObtenerEnemigosVivos", &UGameplayFacade::execObtenerEnemigosVivos },
+		{ "ObtenerGameEventManager", &UGameplayFacade::execObtenerGameEventManager },
 		{ "ObtenerNivelActual", &UGameplayFacade::execObtenerNivelActual },
 		{ "ObtenerPuntuacionActual", &UGameplayFacade::execObtenerPuntuacionActual },
 		{ "PausarJuego", &UGameplayFacade::execPausarJuego },
@@ -1444,14 +1524,15 @@ struct Z_Construct_UClass_UGameplayFacade_Statics
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_UGameplayFacade_ActualizarPuntuacion, "ActualizarPuntuacion" }, // 4146779596
-		{ &Z_Construct_UFunction_UGameplayFacade_AplicarPowerUp, "AplicarPowerUp" }, // 2110240835
+		{ &Z_Construct_UFunction_UGameplayFacade_AplicarPowerUp, "AplicarPowerUp" }, // 2619836584
+		{ &Z_Construct_UFunction_UGameplayFacade_CambiarNivelPorPuntos, "CambiarNivelPorPuntos" }, // 793227288
 		{ &Z_Construct_UFunction_UGameplayFacade_CancelarBomba, "CancelarBomba" }, // 1425693702
 		{ &Z_Construct_UFunction_UGameplayFacade_CargarNivel, "CargarNivel" }, // 1455691279
 		{ &Z_Construct_UFunction_UGameplayFacade_ColocarBomba, "ColocarBomba" }, // 3597026068
 		{ &Z_Construct_UFunction_UGameplayFacade_CompletarNivel, "CompletarNivel" }, // 914953922
 		{ &Z_Construct_UFunction_UGameplayFacade_CrearEfectoDestruccion, "CrearEfectoDestruccion" }, // 898329990
 		{ &Z_Construct_UFunction_UGameplayFacade_CrearEfectoExplosion, "CrearEfectoExplosion" }, // 546972015
-		{ &Z_Construct_UFunction_UGameplayFacade_CrearPowerUp, "CrearPowerUp" }, // 520881301
+		{ &Z_Construct_UFunction_UGameplayFacade_CrearPowerUp, "CrearPowerUp" }, // 2585755718
 		{ &Z_Construct_UFunction_UGameplayFacade_DetonarBomba, "DetonarBomba" }, // 709207909
 		{ &Z_Construct_UFunction_UGameplayFacade_EliminarEnemigo, "EliminarEnemigo" }, // 3843041669
 		{ &Z_Construct_UFunction_UGameplayFacade_EstaJuegoPausado, "EstaJuegoPausado" }, // 28246136
@@ -1464,12 +1545,13 @@ struct Z_Construct_UClass_UGameplayFacade_Statics
 		{ &Z_Construct_UFunction_UGameplayFacade_MostrarPantallaMuerte, "MostrarPantallaMuerte" }, // 2279355862
 		{ &Z_Construct_UFunction_UGameplayFacade_MostrarPantallaVictoria, "MostrarPantallaVictoria" }, // 1718141742
 		{ &Z_Construct_UFunction_UGameplayFacade_ObtenerEnemigosVivos, "ObtenerEnemigosVivos" }, // 3770329250
+		{ &Z_Construct_UFunction_UGameplayFacade_ObtenerGameEventManager, "ObtenerGameEventManager" }, // 2296863716
 		{ &Z_Construct_UFunction_UGameplayFacade_ObtenerNivelActual, "ObtenerNivelActual" }, // 2886573849
 		{ &Z_Construct_UFunction_UGameplayFacade_ObtenerPuntuacionActual, "ObtenerPuntuacionActual" }, // 3696564784
 		{ &Z_Construct_UFunction_UGameplayFacade_PausarJuego, "PausarJuego" }, // 3462935575
 		{ &Z_Construct_UFunction_UGameplayFacade_ReanudarJuego, "ReanudarJuego" }, // 485089979
 		{ &Z_Construct_UFunction_UGameplayFacade_ReiniciarNivel, "ReiniciarNivel" }, // 105688552
-		{ &Z_Construct_UFunction_UGameplayFacade_RemoverPowerUp, "RemoverPowerUp" }, // 194919339
+		{ &Z_Construct_UFunction_UGameplayFacade_RemoverPowerUp, "RemoverPowerUp" }, // 3494511560
 		{ &Z_Construct_UFunction_UGameplayFacade_RespawnearJugador, "RespawnearJugador" }, // 1124613479
 		{ &Z_Construct_UFunction_UGameplayFacade_SpawnearEnemigo, "SpawnearEnemigo" }, // 1410998730
 		{ &Z_Construct_UFunction_UGameplayFacade_TerminarJuego, "TerminarJuego" }, // 2854566201
@@ -1532,14 +1614,14 @@ UGameplayFacade::~UGameplayFacade() {}
 // End Class UGameplayFacade
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_GameplayFacade_h_Statics
+struct Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_GameplayFacade_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UGameplayFacade, UGameplayFacade::StaticClass, TEXT("UGameplayFacade"), &Z_Registration_Info_UClass_UGameplayFacade, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UGameplayFacade), 466725668U) },
+		{ Z_Construct_UClass_UGameplayFacade, UGameplayFacade::StaticClass, TEXT("UGameplayFacade"), &Z_Registration_Info_UClass_UGameplayFacade, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UGameplayFacade), 1669540875U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_GameplayFacade_h_3341942426(TEXT("/Script/FinalBomberMan"),
-	Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_GameplayFacade_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_FinalSam_Source_FinalBomberMan_GameplayFacade_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_GameplayFacade_h_4052405747(TEXT("/Script/FinalBomberMan"),
+	Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_GameplayFacade_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_samsa_Documents_Unreal_Projects_Final_Bomberman_Source_FinalBomberMan_GameplayFacade_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

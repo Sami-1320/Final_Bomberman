@@ -20,7 +20,7 @@ ABloqueMadera::ABloqueMadera()
     }
 
     // Cargar material de madera
-    static ConstructorHelpers::FObjectFinder<UMaterialInterface> MaterialMadera(TEXT("/Script/Engine.Material'/Game/StarterContent/Materials/M_Wood_Oak.M_Wood_Oak'"));
+    static ConstructorHelpers::FObjectFinder<UMaterialInterface> MaterialMadera(TEXT("/Script/Engine.Material'/Game/Pack_Bonus/Materials/M_Pack_Bonus_Wooden_Floor_1.M_Pack_Bonus_Wooden_Floor_1'"));
     if (MaterialMadera.Succeeded())
     {
         MeshComponent->SetMaterial(0, MaterialMadera.Object);

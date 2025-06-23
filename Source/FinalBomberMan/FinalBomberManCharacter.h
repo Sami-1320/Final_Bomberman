@@ -33,6 +33,9 @@ public:
 	
 protected:
 	void PlaceBombPressed();
+	void SaltoAltoPressed();
+	void CambiarANivel1();
+	void CambiarANivel2();
 	void MoveForward(float Value);
 	void MoveRight(float Value);
 	void Turn(float Rate);
@@ -70,14 +73,83 @@ public:
 
 	void AplicarBonus(ETipoPowerUp Tipo);
 
+	// Bonus de PowerUps
+	float BonusVelocidad = 0.f;
+
+	// Sistema de vidas
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player", meta = (AllowPrivateAccess = "true"))
+	int32 VidasJugador = 5;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player", meta = (AllowPrivateAccess = "true"))
+	int32 MaxVidasJugador = 5;
+
+	// Sistema de saltos del power up
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player", meta = (AllowPrivateAccess = "true"))
+	int32 SaltosDisponibles = 0;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player", meta = (AllowPrivateAccess = "true"))
+	int32 MaxSaltosDisponibles = 2;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player", meta = (AllowPrivateAccess = "true"))
+	bool bTienePowerUpSalto = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player", meta = (AllowPrivateAccess = "true"))
+	FVector PosicionSalto = FVector::ZeroVector;
+
+	// Control de movimiento durante salto
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player", meta = (AllowPrivateAccess = "true"))
+	bool bMovimientoBloqueado = false;
+
+	// Funciones para manejar vidas
+	UFUNCTION(BlueprintCallable, Category = "Player")
+	int32 GetVidasJugador() const { return VidasJugador; }
+
+	UFUNCTION(BlueprintCallable, Category = "Player")
+	void SetVidasJugador(int32 NuevasVidas);
+
+	UFUNCTION(BlueprintCallable, Category = "Player")
+	void PerderVida();
+
+	UFUNCTION(BlueprintCallable, Category = "Player")
+	void GanarVida();
+
+	UFUNCTION(BlueprintCallable, Category = "Player")
+	bool EstaMuerto() const { return VidasJugador <= 0; }
+
+	// Funciones para manejar saltos del power up
+	UFUNCTION(BlueprintCallable, Category = "Player")
+	void ActivarPowerUpSalto();
+
+	UFUNCTION(BlueprintCallable, Category = "Player")
+	void UsarSaltoAlto();
+
+	UFUNCTION(BlueprintCallable, Category = "Player")
+	bool PuedeSaltarAlto() const { return bTienePowerUpSalto && SaltosDisponibles > 0; }
+
+	UFUNCTION(BlueprintCallable, Category = "Player")
+	int32 GetSaltosDisponibles() const { return SaltosDisponibles; }
+
+	UFUNCTION(BlueprintCallable, Category = "Player")
+	void MostrarMensajeSaltos();
+
+	// Funciones para controlar el bloqueo de movimiento
+	UFUNCTION(BlueprintCallable, Category = "Player")
+	void BloquearMovimiento();
+
+	UFUNCTION(BlueprintCallable, Category = "Player")
+	void DesbloquearMovimiento();
+
+	UFUNCTION(BlueprintCallable, Category = "Player")
+	bool EstaMovimientoBloqueado() const { return bMovimientoBloqueado; }
+
 private:
 	/** Number of bombs the player can place */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Bomb", meta = (AllowPrivateAccess = "true"))
-	int32 BombCount = 10;
+	int32 BombCount = 20;
 
 	/** Maximum number of bombs the player can place */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Bomb", meta = (AllowPrivateAccess = "true"))
-	int32 MaxBombCount = 10;
+	int32 MaxBombCount = 20;
 
 	/** Explosion radius of the player's bombs */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Bomb", meta = (AllowPrivateAccess = "true"))
@@ -94,8 +166,5 @@ private:
 	/** Bomb class to spawn */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Bomb", meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<ABomba> BombClass;
-
-	// Bonus de PowerUps
-	float BonusVelocidad = 0.f;
 };
 

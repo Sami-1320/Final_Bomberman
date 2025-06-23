@@ -20,7 +20,7 @@ ABloqueLadrillo::ABloqueLadrillo()
     }
 
     // Cargar material de ladrillo
-    static ConstructorHelpers::FObjectFinder<UMaterialInterface> MaterialLadrillo(TEXT("/Script/Engine.Material'/Game/StarterContent/Materials/M_Brick_Clay_New.M_Brick_Clay_New'"));
+    static ConstructorHelpers::FObjectFinder<UMaterialInterface> MaterialLadrillo(TEXT("/Script/Engine.Material'/Game/Pack_Bonus/Materials/M_Pack_Bonus_Tile_1.M_Pack_Bonus_Tile_1'"));
     if (MaterialLadrillo.Succeeded())
     {
         MeshComponent->SetMaterial(0, MaterialLadrillo.Object);

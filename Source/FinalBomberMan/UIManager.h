@@ -52,10 +52,42 @@ public:
     UFUNCTION(BlueprintCallable, Category = "UI")
     void ActualizarVidaJugador(int32 VidaActual, int32 VidaMaxima);
 
+    // Métodos para el sistema de puntos
+    UFUNCTION(BlueprintCallable, Category = "UI")
+    void AgregarPuntoPorBloque();
+
+    UFUNCTION(BlueprintCallable, Category = "UI")
+    void ReiniciarPuntos();
+
+    UFUNCTION(BlueprintCallable, Category = "UI")
+    int32 ObtenerPuntosPorBloques() const { return PuntosPorBloques; }
+
+    UFUNCTION(BlueprintCallable, Category = "UI")
+    void CambiarNivelPorPuntos();
+
+    UFUNCTION(BlueprintCallable, Category = "UI")
+    void MostrarContadorPuntosPermanente();
+
+    UFUNCTION(BlueprintCallable, Category = "UI")
+    void InicializarUIManager();
+
+    // Función para establecer referencia al GameplayFacade
+    UFUNCTION(BlueprintCallable, Category = "UI")
+    void EstablecerGameplayFacade(class UGameplayFacade* Facade);
+
 private:
     int32 PuntuacionActual;
     int32 EnemigosRestantes;
     int32 BombasDisponibles;
     int32 VidaJugador;
     int32 VidaMaximaJugador;
+    
+    // Sistema de puntos para cambio de nivel
+    int32 PuntosPorBloques;
+    int32 PuntosNecesariosParaCambioNivel;
+    bool bCambioNivelPendiente;
+    
+    // Referencia al GameplayFacade
+    UPROPERTY()
+    class UGameplayFacade* GameplayFacadeRef;
 }; 
